@@ -13,8 +13,10 @@ export const RightWrap = styled.div`
     display: flex;
     flex-direction: column;
     gap: 10px;
-    width: 50%;
+    width:50%;
 `;
+
+
 
 export const LeftWrap = styled.div`
     position:relative;
