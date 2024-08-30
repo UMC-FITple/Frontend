@@ -5,22 +5,23 @@ export const Parent1 = styled.div`
   align-items: flex-start;
   justify-content: flex-start;
   flex-direction: column;
-  margin-top: 20px;
-  margin-left: 190px;
+  margin-top: 2rem;
+  margin-left: 12%;
 `;
 export const Parent2 = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  margin-left: 280px;
+  margin-left: 18%;
 `;
 export const Parent3 = styled.div`
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
   flex-direction: column;
-  margin-left: 80px;
-  margin-top: 40px;
+  margin-left: 5%;
+  margin-top: 2.5rem;
+  width: 40.25rem;
 `;
 export const ProductContainer = styled.div`
   display: flex;
@@ -29,33 +30,33 @@ export const ProductContainer = styled.div`
   flex-wrap: wrap;
   justify-content: flex-start;
   flex-direction: column;
-  margin-left: 50px;
-  margin-bottom: 60px;
+  margin-left: 3%;
+  margin-bottom: 4rem;
 `;
 export const StarContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  margin-left: 200px;
-  margin-top: 20px;
+  margin-left: 50%;
+  margin-top: 1.25rem;
 `;
 
 export const Imgcontainer = styled.div`
   display: flex;
-  width: 400px;
+  width: 25rem;
   flex-wrap: nowrap;
   align-items: center;
   justify-content: flex-start;
   overflow-x: scroll;
-  margin-top: 10px;
+  margin-top: 1rem;
   &::-webkit-scrollbar {
-    width: 7px;
-    height: 10px;
+    width: 0.5rem;
+    height: 0.625rem;
   }
 
   &::-webkit-scrollbar-thumb {
     background-color: #ddd;
-    border-radius: 5px;
+    border-radius: 0.3125rem;
   }
 
   &::-webkit-scrollbar-track {
@@ -63,13 +64,13 @@ export const Imgcontainer = styled.div`
   }
 `;
 export const ProductDeImagemin = styled.img`
-  width: 80px;
-  height: 80px;
+  width: 5rem;
+  height: 5rem;
   flex: 0 0 auto;
-  border-color: 1px solid gray;
-  border-radius: 10px;
-  margin-right: 10px;
-  margin-bottom: 10px;
+  border: 1px solid gray;
+  border-radius: 0.625rem;
+  margin-right: 0.625rem;
+  margin-bottom: 0.625rem;
   background-color: #efefef;
   background-position: center;
   background-size: cover;
@@ -79,67 +80,64 @@ export const ClothNamebox = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  margin-left: 30px;
+  margin-left: 2%;
+  width: 25rem;
 `;
 export const ClothName = styled.div`
-  font-size: 35px;
+  font-size: 2.1875rem;
   font-family: "SUIT Variable", sans-serif;
   font-weight: 700;
   color: #000000;
-  margin-top: 20px;
+  margin-top: 1.25rem;
 `;
 export const ClothdebarContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin-left: 250px;
-  margin-bottom: 60px;
+  margin-left: 15%;
+  margin-bottom: 1rem;
   cursor: pointer;
   &:hover {
     background-color: #f0f0f0;
   }
 `;
 export const Clothdebar = styled.img`
-  //옷 이름 옆 점 세개(추가,수정나오는칸)
-  width: 7px;
-  height: 7px;
-  margin-bottom: 3px;
+  width: 0.4375rem;
+  height: 0.4375rem;
+  margin-bottom: 0.1875rem;
 `;
 
 export const BackIcon = styled.img`
-  margin-left: 70px;
-  margin-top: 20px;
+  margin-left: 4.375rem;
+  margin-top: 1.25rem;
 `;
 
 export const CurrentCloth = styled.div`
-  //옷장{">"}아우터
-  font-size: 20px;
+  font-size: 1.25rem;
   font-family: "SUIT Variable", sans-serif;
   font-weight: 600;
   color: #000000;
-  margin-left: 430px;
-`;
-//상세 정보 옷사진 나중에 fetch로 받아오기
-export const ProductDeImage = styled.img`
-  width: 400px;
-  height: 400px;
-  border-color: gray;
-  border-radius: 10px;
-  background-color: #d9d9d9;
-  background-image: url();
-  background-position: center;
-  background-size: cover;
-  margin-bottom: 620px;
-  margin-left: 50px;
+  margin-left: 27%;
 `;
 
-/*메모*/
+export const ProductDeImage = styled.img`
+  width: 25rem;
+  height: 25rem;
+  border: 1px solid gray;
+  border-radius: 0.625rem;
+  background-color: #d9d9d9;
+  background-position: center;
+  background-size: cover;
+  margin-bottom: 38.75rem;
+  margin-left: 3%;
+`;
+
 export const CurvedRectangle = styled.div`
-  width: 500px;
-  height: 100px;
+  width: 31.25rem;
+  height: 6.25rem;
   border: 1px solid #d9d9d9;
-  border-radius: 20px;
-  padding: 20px;
-  margin-top: 20px;
+  border-radius: 1.25rem;
+  padding: 1.25rem;
+  margin-top: 1.25rem;
 `;
 
 export const NoteArea = styled.textarea`
@@ -153,51 +151,55 @@ export const NoteArea = styled.textarea`
 `;
 
 export const DetailName = styled.div`
-  font-size: 25px;
+  display: flex;
+  justify-content: flex-start;
+  font-size: 1.5625rem;
   font-family: "SUIT Variable", sans-serif;
   font-weight: 600;
   color: #0276fe;
-  margin-left: 30px;
-  margin-top: 40px;
+  margin-left: 2.3%;
+  margin-top: 2.5rem;
+  width: 20rem;
 `;
 export const DetailNamebox = styled.div`
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
+  width: 25rem;
 `;
 export const DetailboxContainer = styled.div`
   display: flex;
   justify-content: flex-start;
-  margin-left: 10px;
-  margin-top: 10px;
+  margin-left: 1.5%;
+  margin-top: 0.625rem;
 `;
 export const Detailbox = styled.div`
-  font-size: 25px;
+  font-size: 1.5625rem;
   font-family: "SUIT Variable", sans-serif;
   font-weight: 700;
   color: #000000;
-  margin-left: 30px;
-  margin-top: 20px;
+  margin-left: 2%;
+  margin-top: 1.25rem;
+  width: 6rem;
 `;
 
-/*수정하기 삭제하기*/
 export const EditButtons = styled.div`
   display: flex;
   position: absolute;
-  right: 350px;
-  bottom: 430px;
+  right: 22%;
+  bottom: 26.875rem;
   flex-direction: column;
   justify-content: center;
   opacity: ${(props) => (props.isEdit ? 1 : 0)};
   transition: opacity 0.2s ease-in-out;
 `;
 export const EditButton = styled.button`
-  padding: 10px 40px;
+  padding: 0.625rem 2.5rem;
   border: 1px solid #000000;
   color: #000000;
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 500;
   font-family: "SUIT Variable", sans-serif;
-  border-radius: 10px;
+  border-radius: 0.625rem;
   background-color: #efefef;
   cursor: pointer;
   &:hover {
@@ -206,41 +208,39 @@ export const EditButton = styled.button`
 `;
 
 export const FullStar = styled.img.attrs({ src: "/assets/star8.svg" })`
-  width: 38px;
-  height: 37px;
-  z-index: 1;
+  width: 2.375rem;
+  height: 2.3125rem;
 `;
+
 export const EmptyStar = styled.img.attrs({ src: "/assets/star5.svg" })`
-  width: 38px;
-  height: 37px;
-  z-index: 1;
+  width: 2.375rem;
+  height: 2.3125rem;
 `;
 
 export const MeasureName = styled.div`
-  font-size: 20px;
+  font-size: 1.25rem;
   font-family: "SUIT Variable", sans-serif;
   font-weight: 600;
   color: #838383;
-  margin-top: 20px;
+  margin-top: 1.25rem;
   width: 100%;
 `;
 export const MeasureNamebox = styled.div`
   display: flex;
   width: 80%;
-  margin-left: 70px;
+  margin-left: 4.375rem;
   justify-content: center;
   align-items: center;
 `;
 export const CurvedRectangle3 = styled.div`
-  /*메모*/
-  width: 180px;
-  height: 20px;
+  width: 11.25rem;
+  height: 1.25rem;
   border: 1px solid #efefef;
-  border-radius: 16px;
-  padding: 10px;
-  margin-top: 20px;
-  margin-left: 10px;
-  margin-right: 10px;
+  border-radius: 1rem;
+  padding: 0.625rem;
+  margin-top: 1.25rem;
+  margin-left: 0.625rem;
+  margin-right: 0.625rem;
   background-color: #efefef;
 `;
 export const MeasureArea = styled.textarea`
@@ -250,39 +250,39 @@ export const MeasureArea = styled.textarea`
   border: none;
   outline: none;
   font-family: "SUIT Variable", sans-serif;
-  font-size: 15px;
+  font-size: 1rem;
   font-weight: bold;
   background-color: transparent;
-  margin-left: 130px;
-  margin-right: 20px;
+  margin-left: 8.125rem;
+  margin-right: 1.25rem;
 `;
-//비교
+
 export const ChangeButton = styled.img`
   position: fixed;
-  width: 97px;
-  height: 97px;
-  top: 450px;
-  left: 1280px;
+  width: 6rem;
+  height: 6rem;
+  top: 28.125rem;
+  left: 80%;
   cursor: pointer;
   z-index: 1;
 `;
-// 하얀찜
+
 export const EmptyBookmark = styled.img`
   position: fixed;
-  width: 97px;
-  height: 97px;
-  top: 550px;
-  left: 1280px;
+  width: 6rem;
+  height: 6rem;
+  top: 34.375rem;
+  left: 80%;
   cursor: pointer;
   z-index: 1;
 `;
-//파란색찜
+
 export const FilledBookmark = styled.img`
   position: fixed;
-  width: 97px;
-  height: 97px;
-  top: 550px;
-  left: 1280px;
+  width: 6rem;
+  height: 6rem;
+  top: 34.375rem;
+  left: 80%;
   cursor: pointer;
   z-index: 1;
 `;

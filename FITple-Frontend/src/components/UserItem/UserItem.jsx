@@ -26,6 +26,9 @@ const UserItem = ({ ...props }) => {
   const navgateToDetail = () => {
     navigate(`/clothdetail/${item.cloth_id}`);
   };
+  const navgateToEdit = () => {
+    navigate(`/clothupdate/${item.cloth_id}`);
+  };
   const [isOpen, setIsOpen] = useState(false);
   // 더미데이터
   const dummyItem = {
@@ -77,7 +80,9 @@ const UserItem = ({ ...props }) => {
                 <OptionImg src={OptionIcon} />
               </OptionBTN>
               <OptionBox $active={isOpen}>
-                <OptionItem $first>옷 정보 수정하기</OptionItem>
+                <OptionItem $first onClick={navgateToEdit}>
+                  옷 정보 수정하기
+                </OptionItem>
                 <OptionItem $last>옷 정보 삭제하기</OptionItem>
               </OptionBox>
             </BrandWrap>

@@ -1,20 +1,7 @@
 import { useState, useEffect } from "react";
 import SideBar from "../../components/SideBar/SideBar";
 import {
-  ProductDetail,
-  ProductImage,
-  ProductItem,
-  ProductName,
-  ProductBrand,
-  ProductContainer,
-  Parent,
-  FilledHeart,
-  Imgcontainer,
   PLUSbutton,
-  EditButtons,
-  EditButton,
-  ClothdebarContainer,
-  Clothdebar,
   SearchBar,
   SerchTitle,
   SerchTitle2,
@@ -29,9 +16,6 @@ import {
   Wrap,
   ItemListWrap,
 } from "./ClothmainPage.style";
-import { Link } from "react-router-dom";
-import Modal from "react-modal";
-import DeletePopUp from "../../components/DeletePopUp/DeletePopUp";
 import { ClothApi } from "../../../data/ClothApi";
 import SearchIcon from "../../../assets/search.svg";
 import ItemList from "../../components/ItemList/ItemList";
@@ -39,25 +23,13 @@ import { useNavigate } from "react-router-dom";
 
 const ClothmainPage = () => {
   const [category, setCategory] = useState(undefined);
-  const [isEdit, setIsEdit] = useState({});
+
   const [clothData, SetClothData] = useState([]);
-  const [isDeletePopupOpen, setisDeletePopupOpen] = useState(false);
 
   const navigate = useNavigate();
 
-  const toggleEdit = (clothId) => {
-    setIsEdit((prev) => ({
-      ...prev,
-      [clothId]: !prev[clothId], // 현재 clothId의 값을 반전시킴
-    }));
-  };
-
   const goToResister = () => {
     navigate("/clothregister");
-  };
-
-  const handleDeleteCloth = () => {
-    setisDeletePopupOpen(!isDeletePopupOpen);
   };
 
   // Api 데이터 가져오기

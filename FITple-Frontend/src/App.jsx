@@ -59,7 +59,7 @@ function App() {
           <Route path="/cloth" element={<ClothmainPage />} />
           <Route path="/clothdetail/:clothId" element={<ClothdetailPage />} />
           <Route path="/clothregister" element={<ClothregisterPage />} />
-          <Route path="/clothupdate" element={<ClothupdatePage />} />
+          <Route path="/clothupdate/:clothId" element={<ClothupdatePage />} />
           {/* 프로필페이지 */}
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/profile/edit" element={<ProfileEditPage />} />
