@@ -74,7 +74,7 @@ const SearchMainPage = () => {
   //검색 데이터 가져오기
   const getSearchData = async () => {
     const response = await searchTotal(keyword);
-    console.log(response);
+    console.log("검색해보기", response);
     setTotalData(response.result);
   };
 

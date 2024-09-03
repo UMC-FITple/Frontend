@@ -20,7 +20,7 @@ const BrandCard = ({ item }) => {
   return (
     <Container onClick={() => goToBrand()}>
       <Wrap>
-        <UserImg src="https://i.namu.wiki/i/eZiA7Yvh06E5jv5IsGTaiut615o4hpjALOlnqfIAvmHPnf3Je4JvglFmo635duNRly8aeOqMgS_oLWL8G_y1WQ.webp" />
+        <UserImg src={item.brand_image} />
         <TitleWrap>
           <Title>{item.brand_name}</Title>
           <SubTitle>{item.eng_name}</SubTitle>

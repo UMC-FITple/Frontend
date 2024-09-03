@@ -6,7 +6,12 @@ export const Container = styled.div`
   width: fit-content;
 `;
 
-export const LogoImg = styled.img``;
+export const LogoImg = styled.img`
+  box-sizing: border-box;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+`;
 
 export const TitleBox = styled.div`
   margin-left: 24px;
