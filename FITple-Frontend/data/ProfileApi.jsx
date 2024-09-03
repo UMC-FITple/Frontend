@@ -1,6 +1,6 @@
 const localhost = "http://localhost:3000";
 
-export const getProfile = async () => {
+export const getInform = async () => {
   try {
     const url = new URL(`${localhost}/FITple/profile`);
 

@@ -6,27 +6,22 @@ import {
   ProfileBox,
   OptionBox,
   OptionItem,
-  OptionItemA,
 } from "./ProfilePage.style";
 import TabBox from "../../components/TabBox/TabBox";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ProfileLove from "../../components/ProfileLove/ProfileLove";
 import ProfileFavor from "../../components/ProfileFavor/ProfileFavor";
 import ProfileMyBody from "../../components/ProfileMyBody/ProfileMyBody";
 import Infom from "../../components/Infom/Infom";
 import { useNavigate } from "react-router-dom";
-import { getProfile } from "../../../data/GetProfileApi";
-import useAuthStore from "../../../data/store/userAuthStore";
-import { useEffect } from "react";
+import { getInform } from "../../../data/ProfileApi";
+import { logout } from "../../../data/LoginApi";
 
 const ProfilePage = () => {
   const navigate = useNavigate();
   const [selectItem, setSelectItem] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
   const [profileData, setProfileData] = useState({});
-  const [profileLoveData, setProfileLoveData] = useState([]);
-
-  const { token } = useAuthStore();
 
   // render
   const renderContent = () => {
@@ -34,7 +29,7 @@ const ProfilePage = () => {
       case 0:
         return <ProfileLove />;
       case 1:
-        return <ProfileFavor data={profileLoveData} />;
+        return <ProfileFavor />;
       case 2:
         return <ProfileMyBody />;
     }
@@ -42,7 +37,6 @@ const ProfilePage = () => {
 
   const showOptionBox = () => {
     setIsOpen(!isOpen);
-    console.log(isOpen);
   };
 
   const goToEdit = () => {
@@ -50,8 +44,15 @@ const ProfilePage = () => {
   };
 
   const getProfileData = async () => {
-    const response = await getProfile();
+    const response = await getInform();
     setProfileData(response.result);
+  };
+
+  // 로그아웃 함수
+  const handleLogout = async () => {
+    const response = await logout();
+    navigate("/");
+    console.log("response");
   };
   useEffect(() => {
     getProfileData();
@@ -81,7 +82,9 @@ const ProfilePage = () => {
             >
               문의하기
             </OptionItem>
-            <OptionItem $last>로그아웃</OptionItem>
+            <OptionItem $last onClick={() => handleLogout()}>
+              로그아웃
+            </OptionItem>
           </OptionBox>
         </ProfileBox>
       </ProfileContainer>
