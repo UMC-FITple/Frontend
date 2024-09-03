@@ -273,7 +273,7 @@ function ClothdetailPage() {
               <Clothdebar src="../assets/detailbar.svg" />
               {isEdit && (
                 <EditButtons isEdit={isEdit}>
-                  <Link to="/clothupdate">
+                  <Link to="/clothupdate/:clothId">
                     <EditButton>옷 정보 수정하기</EditButton>
                   </Link>
                   <EditButton onClick={handleDeleteCloth}>
@@ -315,7 +315,7 @@ function ClothdetailPage() {
             <Detailbox>{clothData.product_code}</Detailbox>
           </DetailboxContainer>
           <DetailName>URL</DetailName>
-          <Detailbox style={{ justifyContent: `flex-start` }}>
+          <Detailbox>
             <a href={clothData.URL} target="_blank" rel="noopener noreferrer">
               {clothData.URL}
             </a>

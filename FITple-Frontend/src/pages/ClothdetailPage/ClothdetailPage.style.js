@@ -92,6 +92,7 @@ export const ClothName = styled.div`
 `;
 export const ClothdebarContainer = styled.div`
   display: flex;
+  position: relative;
   flex-direction: column;
   margin-left: 15%;
   margin-bottom: 1rem;
@@ -163,14 +164,15 @@ export const DetailName = styled.div`
 `;
 export const DetailNamebox = styled.div`
   display: flex;
-  justify-content: center;
-  width: 25rem;
+  justify-content: space-between;
+  width: 27rem;
 `;
 export const DetailboxContainer = styled.div`
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   margin-left: 1.5%;
   margin-top: 0.625rem;
+  width: 26rem;
 `;
 export const Detailbox = styled.div`
   font-size: 1.5625rem;
@@ -185,15 +187,17 @@ export const Detailbox = styled.div`
 export const EditButtons = styled.div`
   display: flex;
   position: absolute;
-  right: 22%;
-  bottom: 26.875rem;
+  right: 80%;
+  top: 3rem;
+  width: 14.5rem;
+  height: 4rem;
   flex-direction: column;
   justify-content: center;
-  opacity: ${(props) => (props.isEdit ? 1 : 0)};
+  opacity: ${(props) => (props.isEdit ? "flex" : "block")};
   transition: opacity 0.2s ease-in-out;
 `;
 export const EditButton = styled.button`
-  padding: 0.625rem 2.5rem;
+  padding: 0.57rem 3.9rem;
   border: 1px solid #000000;
   color: #000000;
   font-size: 1rem;
