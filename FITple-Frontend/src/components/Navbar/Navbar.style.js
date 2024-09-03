@@ -12,7 +12,7 @@ export const NavBarBox = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 1200px;
+  width: 80%;
 `;
 
 export const MainBox = styled.div`
