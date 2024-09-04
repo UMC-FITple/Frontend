@@ -187,20 +187,21 @@ export const SearchBar = styled.input`
   color: #000000;
 `;
 
-export const SerchTitleContainer = styled.div`
+export const SearchTitleContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 90px;
+  margin-bottom: 24px;
+  margin-top: 30px;
 `;
-export const SerchTitle = styled.div`
+export const SearchTitle = styled.div`
   font-size: 24px;
   font-weight: 800;
   font-family: "SUIT Variable", sans-serif;
   color: #0276fe;
 `;
-export const SerchTitle2 = styled.div`
+export const SearchTitle2 = styled.div`
   font-size: 24px;
   font-weight: 800;
   font-family: "SUIT Variable", sans-serif;

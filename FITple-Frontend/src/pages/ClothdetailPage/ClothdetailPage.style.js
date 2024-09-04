@@ -1,54 +1,121 @@
-import styled from "styled-components";
+import { Link } from "react-router-dom";
+import styled, { css } from "styled-components";
 
-export const Parent1 = styled.div`
+export const Container = styled.div`
   display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
-  flex-direction: column;
-  margin-top: 2rem;
-  margin-left: 12%;
+  justify-content: center;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  position: relative;
 `;
-export const Parent2 = styled.div`
+export const Wrap = styled.div`
+  width: 80%;
+`;
+
+export const SimpleWrap = styled.div`
+  margin-bottom: 30px;
+`;
+export const FirstWrap = styled.div`
+  width: 40%;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  margin-left: 18%;
+  justify-content: space-between;
+  margin-bottom: 8px;
 `;
-export const Parent3 = styled.div`
+export const BrandWrap = styled.div`
+  width: 80%;
+  margin-bottom: 4px;
   display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
-  flex-direction: column;
-  margin-left: 5%;
-  margin-top: 2.5rem;
-  width: 40.25rem;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
 `;
-export const ProductContainer = styled.div`
-  display: flex;
+export const BrandName = styled.p`
+  font-size: 24px;
+  font-weight: 700;
+`;
+export const OptionBTN = styled.button`
+  padding: 0 10px;
+  cursor: pointer;
+  background: none;
+  border: none;
+`;
+export const OptionBox = styled.div`
+  width: 230px;
+  height: 92px;
   position: absolute;
-  align-items: flex-start;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  flex-direction: column;
-  margin-left: 3%;
-  margin-bottom: 4rem;
+  right: 10px;
+  top: 27px;
+  border-radius: 10px;
+  box-shadow: 8px 8px 20px 0px #c9c7c730;
+  background-color: #efefef;
+  display: ${(props) => (props.$active ? "block" : "none")};
+  z-index: 100;
 `;
+
+export const OptionItem = styled.div`
+  font-size: 16px;
+  font-weight: 500;
+  text-decoration: none;
+  color: black;
+  display: block;
+  width: 230px;
+  height: 46px;
+  padding: 13px 0 13px 36px;
+  box-sizing: border-box;
+  border-bottom: none;
+  cursor: pointer;
+  &:hover {
+    background-color: #d9d9d9;
+  }
+  /* 처음일때 */
+  ${(props) =>
+    props.$first &&
+    css`
+      border-radius: 10px 10px 0 0;
+    `}
+  /* 마지막일때 */
+  ${(props) =>
+    props.$last &&
+    css`
+      border-bottom: "1px solid #d9d9d9";
+      border-radius: 0 0 10px 10px;
+    `}
+`;
+export const ItemName = styled.div`
+  font-size: 32px;
+  font-weight: 700;
+`;
+
+export const BackArrow = styled(Link)`
+  font-size: 36px;
+  text-decoration: none;
+  color: black;
+`;
+export const SecondWrap = styled.div`
+  display: flex;
+`;
+export const LeftWrap = styled.div`
+  width: 40%;
+`;
+
+export const RightWrap = styled.div`
+  width: 60%;
+  box-sizing: border-box;
+  padding-left: 3%;
+`;
+export const ProductContainer = styled.div``;
 export const StarContainer = styled.div`
   display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  margin-left: 50%;
-  margin-top: 1.25rem;
+  justify-content: flex-end;
 `;
 
 export const Imgcontainer = styled.div`
+  margin-bottom: 8px;
+  gap: 3%;
   display: flex;
-  width: 25rem;
   flex-wrap: nowrap;
-  align-items: center;
-  justify-content: flex-start;
   overflow-x: scroll;
-  margin-top: 1rem;
   &::-webkit-scrollbar {
     width: 0.5rem;
     height: 0.625rem;
@@ -64,24 +131,20 @@ export const Imgcontainer = styled.div`
   }
 `;
 export const ProductDeImagemin = styled.img`
-  width: 5rem;
-  height: 5rem;
-  flex: 0 0 auto;
-  border: 1px solid gray;
+  min-width: 20%;
+  height: auto;
+  aspect-ratio: 1 / 1; /* 1:1 비율로 설정 */
+  object-fit: cover; /* 이미지를 잘라서 비율을 유지 */
+  overflow-x: scroll;
   border-radius: 0.625rem;
-  margin-right: 0.625rem;
   margin-bottom: 0.625rem;
   background-color: #efefef;
-  background-position: center;
-  background-size: cover;
 `;
 
-export const ClothNamebox = styled.div`
+export const ClothNameBox = styled.div`
   display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  margin-left: 2%;
-  width: 25rem;
+  flex-direction: column;
+  margin-bottom: 30px;
 `;
 export const ClothName = styled.div`
   font-size: 2.1875rem;
@@ -113,32 +176,26 @@ export const BackIcon = styled.img`
 `;
 
 export const CurrentCloth = styled.div`
-  font-size: 1.25rem;
-  font-family: "SUIT Variable", sans-serif;
+  font-size: 16px;
   font-weight: 600;
   color: #000000;
-  margin-left: 27%;
 `;
 
 export const ProductDeImage = styled.img`
-  width: 25rem;
-  height: 25rem;
-  border: 1px solid gray;
-  border-radius: 0.625rem;
-  background-color: #d9d9d9;
-  background-position: center;
-  background-size: cover;
-  margin-bottom: 38.75rem;
-  margin-left: 3%;
+  margin-bottom: 8px;
+  border-radius: 20px;
+  max-width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1; /* 1:1 비율로 설정 */
+  object-fit: cover; /* 이미지를 잘라서 비율을 유지 */
 `;
 
 export const CurvedRectangle = styled.div`
   width: 31.25rem;
-  height: 6.25rem;
+  height: 3.25rem;
   border: 1px solid #d9d9d9;
   border-radius: 1.25rem;
   padding: 1.25rem;
-  margin-top: 1.25rem;
 `;
 
 export const NoteArea = styled.textarea`
@@ -174,14 +231,17 @@ export const DetailboxContainer = styled.div`
   margin-top: 0.625rem;
   width: 26rem;
 `;
-export const Detailbox = styled.div`
-  font-size: 1.5625rem;
-  font-family: "SUIT Variable", sans-serif;
+export const UrlBox = styled.div`
+  font-size: 20px;
   font-weight: 700;
   color: #000000;
-  margin-left: 2%;
-  margin-top: 1.25rem;
-  width: 6rem;
+`;
+export const UrlLink = styled.a`
+  color: black;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
 `;
 
 export const EditButtons = styled.div`
@@ -221,30 +281,33 @@ export const EmptyStar = styled.img.attrs({ src: "/assets/star5.svg" })`
   height: 2.3125rem;
 `;
 
-export const MeasureName = styled.div`
-  font-size: 1.25rem;
-  font-family: "SUIT Variable", sans-serif;
+export const SizeText = styled.div`
+  font-size: 20px;
   font-weight: 600;
   color: #838383;
-  margin-top: 1.25rem;
-  width: 100%;
+  white-space: nowrap;
 `;
-export const MeasureNamebox = styled.div`
+
+export const SizeList = styled.div`
+  width: 40%;
+`;
+export const SizeItem = styled.div`
   display: flex;
-  width: 80%;
-  margin-left: 4.375rem;
   justify-content: center;
   align-items: center;
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: flex-end;
 `;
 export const CurvedRectangle3 = styled.div`
-  width: 11.25rem;
-  height: 1.25rem;
-  border: 1px solid #efefef;
-  border-radius: 1rem;
-  padding: 0.625rem;
-  margin-top: 1.25rem;
-  margin-left: 0.625rem;
-  margin-right: 0.625rem;
+  width: 30%;
+  font-size: 20px;
+  font-weight: 600;
+  text-align: right;
+  border-radius: 12px;
+  padding: 8px 24px 8px 0;
+  margin-left: 16px;
+  margin-right: 8px;
   background-color: #efefef;
 `;
 export const MeasureArea = styled.textarea`
@@ -263,8 +326,6 @@ export const MeasureArea = styled.textarea`
 
 export const ChangeButton = styled.img`
   position: fixed;
-  width: 6rem;
-  height: 6rem;
   top: 28.125rem;
   left: 80%;
   cursor: pointer;
@@ -281,12 +342,40 @@ export const EmptyBookmark = styled.img`
   z-index: 1;
 `;
 
-export const FilledBookmark = styled.img`
+export const BookMarkIcon = styled.img`
   position: fixed;
-  width: 6rem;
-  height: 6rem;
   top: 34.375rem;
   left: 80%;
   cursor: pointer;
   z-index: 1;
 `;
+
+export const DetailWrap = styled.div`
+  display: flex;
+  gap: 4%;
+  margin-bottom: 30px;
+`;
+
+export const DetailItemWrap = styled.div`
+  width: fit-content;
+  height: fit-content;
+`;
+
+export const DetailTitle = styled.div`
+  font-size: 20px;
+  font-weight: 600;
+  color: #0276fe;
+  margin-bottom: 8px;
+  white-space: nowrap;
+`;
+export const DetailContext = styled.div`
+  font-size: 24px;
+  font-weight: 700;
+  white-space: nowrap;
+`;
+export const OptionImg = styled.img`
+  width: 5px;
+  height: 19px;
+`;
+
+export const SizeWrap = styled.div``;

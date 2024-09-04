@@ -24,7 +24,7 @@ import { useNavigate } from "react-router-dom";
 const UserItem = ({ ...props }) => {
   const navigate = useNavigate();
   const navgateToDetail = () => {
-    navigate(`/clothdetail/${item.cloth_id}`);
+    navigate(`/clothes/${item.cloth_id}`);
   };
   const navgateToEdit = () => {
     navigate(`/clothupdate/${item.cloth_id}`);
@@ -46,7 +46,6 @@ const UserItem = ({ ...props }) => {
   const item = props.item || dummyItem; // props.item이 없을 경우 dummyItem 사용
   const showOptionBox = () => {
     setIsOpen(!isOpen);
-    console.log(isOpen);
   };
   return (
     <>

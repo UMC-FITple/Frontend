@@ -3,9 +3,6 @@ import SideBar from "../../components/SideBar/SideBar";
 import {
   PLUSbutton,
   SearchBar,
-  SerchTitle,
-  SerchTitle2,
-  SerchTitleContainer,
   Container,
   FirstContainer,
   SecondContainer,
@@ -15,6 +12,9 @@ import {
   SideBarWrap,
   Wrap,
   ItemListWrap,
+  SearchTitleContainer,
+  SearchTitle,
+  SearchTitle2,
 } from "./ClothmainPage.style";
 import { ClothApi } from "../../../data/ClothApi";
 import SearchIcon from "../../../assets/search.svg";
@@ -47,10 +47,10 @@ const ClothmainPage = () => {
       {/* 위에 컨테이너 */}
       <FirstContainer>
         <SearchContainer>
-          <SerchTitleContainer>
-            <SerchTitle>내 옷</SerchTitle>
-            <SerchTitle2>을 검색해보세요.</SerchTitle2>
-          </SerchTitleContainer>
+          <SearchTitleContainer>
+            <SearchTitle>내 옷</SearchTitle>
+            <SearchTitle2>을 검색해보세요.</SearchTitle2>
+          </SearchTitleContainer>
           <SearchBarWrap>
             <SearchImg src={SearchIcon} />
             <SearchBar placeholder="" />
