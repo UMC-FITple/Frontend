@@ -36,7 +36,7 @@ function LoginPage() {
       if (response.ok) {
         setToken(data.result); // 로그인 성공 시 Zustand 스토어에 토큰을 저장
         Cookies.set("authToken", data.result, { expires: 7 }); // 쿠키에 토큰을 저장 (7일간 유지)
-        navigate("/cloth");
+        navigate("/clothes");
       } else {
         handleLoginError(response);
       }

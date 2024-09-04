@@ -25,14 +25,14 @@ const Navbar = ({ ...props }) => {
         {/* 로고 & 메뉴 영역 */}
         <MainBox>
           {/* 로고 */}
-          <LogoBox to="/cloth">
+          <LogoBox to="/clothes">
             <LogoImg src={Logo} />
             <LogoTitle {...props}>FITple</LogoTitle>
           </LogoBox>
           {/* 메뉴 */}
           <MenuBox {...props}>
             <MenuItem
-              to="/cloth"
+              to="/clothes"
               {...props}
               $active={location.pathname === "/cloth"}
             >

@@ -1,29 +1,23 @@
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
+import OptionIcon from "../../../assets/Option.svg";
 import Modal from "react-modal";
 import {
-  BackIcon,
   CurrentCloth,
-  Parent1,
-  Parent2,
-  Parent3,
   ProductDeImage,
-  ClothNamebox,
-  ClothName,
   Clothdebar,
   ClothdebarContainer,
   DetailName,
   DetailNamebox,
   DetailboxContainer,
-  Detailbox,
   CurvedRectangle,
   NoteArea,
   EditButtons,
   EditButton,
   CurvedRectangle3,
   MeasureArea,
-  MeasureNamebox,
-  MeasureName,
+  SizeItem,
+  SizeText,
   FullStar,
   EmptyStar,
   ProductContainer,
@@ -32,7 +26,31 @@ import {
   ProductDeImagemin,
   ChangeButton,
   EmptyBookmark,
-  FilledBookmark,
+  Container,
+  Wrap,
+  FirstWrap,
+  BackArrow,
+  SecondWrap,
+  LeftWrap,
+  RightWrap,
+  ClothNameBox,
+  ItemName,
+  BrandWrap,
+  BrandName,
+  OptionBTN,
+  OptionBox,
+  OptionItem,
+  DetailItemWrap,
+  DetailTitle,
+  DetailWrap,
+  OptionImg,
+  DetailContext,
+  SimpleWrap,
+  UrlBox,
+  UrlLink,
+  SizeWrap,
+  SizeList,
+  BookMarkIcon,
 } from "./ClothdetailPage.style";
 import DeletePopUp from "../../components/DeletePopUp/DeletePopUp";
 import ComparePopUp from "../../components/ComparePopUp/ComparePopUp";
@@ -52,7 +70,7 @@ function ClothdetailPage() {
   const [isBookmark, setIsBookmark] = useState(false);
   const [popupOpen, setPopUpOpen] = useState(""); // 팝업 상태 관리
   const [compareData, setCompareData] = useState([]);
-
+  const [isOpen, setIsOpen] = useState(false); // 수정하기, 삭제하기 토글
   // Zustand를 통해 token 가져오기
   const { token } = useAuthStore();
 
@@ -221,168 +239,206 @@ function ClothdetailPage() {
   if (!clothData) {
     return <div>Loading...</div>; // 데이터가 로드되기 전 로딩 표시
   }
+  // 수정하기, 삭제하기 토글관리
+  const showOptionBox = () => {
+    setIsOpen(!isOpen);
+  };
 
   return (
-    <div>
-      <Parent1>
-        <ChangeButton
-          onClick={comparePopUpOpen}
-          src="../assets/changebutton.svg"
+    <Container>
+      <ChangeButton
+        onClick={comparePopUpOpen}
+        src="../assets/changebutton.svg"
+      />
+      {isBookmark ? (
+        <BookMarkIcon
+          onClick={handleBookmark}
+          src="../assets/filledbookmark.svg"
         />
-        {isBookmark ? (
-          <FilledBookmark
-            onClick={handleBookmark}
-            src="../assets/filledbookmark.svg"
-          />
-        ) : (
-          <EmptyBookmark
-            onClick={handleBookmark}
-            src="../assets/emptybookmark.svg"
-          />
-        )}
-        <Link to="/cloth">
-          <BackIcon src="../assets/BackArrow.svg" />
-        </Link>
-        <CurrentCloth>옷장{">"}아우터</CurrentCloth>
-      </Parent1>
-      <Parent2>
-        <ProductDeImage src={clothData.cloth_image} /> {/* 이미지 추가 */}
-        <ProductContainer>
-          <Imgcontainer>
-            {/* 다중 이미지 로딩 가능 */}
-            <ProductDeImagemin />
-            <ProductDeImagemin />
-            <ProductDeImagemin />
-            <ProductDeImagemin />
-            <ProductDeImagemin />
-            <ProductDeImagemin />
-          </Imgcontainer>
-          <StarContainer>{renderStars()}</StarContainer>
-        </ProductContainer>
-        <Parent3>
-          <ClothNamebox>
-            <ClothName>
-              {clothData.brand}
-              <br />
-              <b>{clothData.cloth_name}</b>
-            </ClothName>
+      ) : (
+        <BookMarkIcon
+          onClick={handleBookmark}
+          src="../assets/emptybookmark.svg"
+        />
+      )}
+      <Wrap>
+        {/* 첫번째 wrap */}
+        <FirstWrap>
+          <BackArrow to="/clothes">&lt;</BackArrow>
+          <CurrentCloth>옷장 &gt; 아우터</CurrentCloth>
+        </FirstWrap>
+        <SecondWrap>
+          <LeftWrap>
+            <ProductDeImage src={clothData.cloth_image} /> {/* 이미지 추가 */}
+            {/* ProductContainer (다중이미지 + 별) */}
+            <ProductContainer>
+              {/* 다중 이미지 로딩 가능 */}
+              <Imgcontainer>
+                <ProductDeImagemin />
+                <ProductDeImagemin />
+                <ProductDeImagemin />
+                <ProductDeImagemin />
+                <ProductDeImagemin />
+                <ProductDeImagemin />
+              </Imgcontainer>
+              <StarContainer>{renderStars()}</StarContainer>
+            </ProductContainer>
+          </LeftWrap>
+          {/* 오른쪽 영역 */}
+          <RightWrap>
+            {/* ClothNamebox ( 브랜드 + 제품품번 + :토글) */}
+            <ClothNameBox>
+              {/* 맨위 브랜드 + 토글 */}
+              <BrandWrap>
+                <BrandName>{clothData.brand}</BrandName>
+                <OptionBTN onClick={() => showOptionBox()}>
+                  <OptionImg src={OptionIcon} />
+                </OptionBTN>
+                <OptionBox $active={isOpen}>
+                  <OptionItem $first>옷 정보 수정하기</OptionItem>
+                  <OptionItem $last>옷 정보 삭제하기</OptionItem>
+                </OptionBox>
+              </BrandWrap>
+              <ItemName>{clothData.cloth_name}</ItemName>
 
-            <ClothdebarContainer onClick={toggleEdit}>
-              <Clothdebar src="../assets/detailbar.svg" />
-              <Clothdebar src="../assets/detailbar.svg" />
-              <Clothdebar src="../assets/detailbar.svg" />
-              {isEdit && (
-                <EditButtons isEdit={isEdit}>
-                  <Link to="/clothupdate/:clothId">
-                    <EditButton>옷 정보 수정하기</EditButton>
-                  </Link>
-                  <EditButton onClick={handleDeleteCloth}>
-                    옷 정보 삭제하기
-                  </EditButton>
-                </EditButtons>
-              )}
-              {isDeletePopupOpen && (
-                <Modal
-                  isOpen={isDeletePopupOpen}
-                  onRequestClose={() => setisDeletePopupOpen(false)}
-                  style={{
-                    overlay: { backgroundColor: "rgba(81, 78, 78, 0.162)" },
-                    content: {
-                      border: "none",
-                      backgroundColor: "transparent",
-                      overflow: "hidden",
-                    },
-                  }}
-                >
-                  <DeletePopUp
+              <ClothdebarContainer onClick={toggleEdit}>
+                {/* <Clothdebar src="../assets/detailbar.svg" />
+                <Clothdebar src="../assets/detailbar.svg" />
+                <Clothdebar src="../assets/detailbar.svg" />
+                {isEdit && (
+                  <EditButtons isEdit={isEdit}>
+                    <Link to="/clothupdate/:clothId">
+                      <EditButton>옷 정보 수정하기</EditButton>
+                    </Link>
+                    <EditButton onClick={handleDeleteCloth}>
+                      옷 정보 삭제하기
+                    </EditButton>
+                  </EditButtons>
+                )} */}
+                {isDeletePopupOpen && (
+                  <Modal
                     isOpen={isDeletePopupOpen}
-                    onClose={() => setisDeletePopupOpen(false)}
-                  />
-                </Modal>
-              )}
-            </ClothdebarContainer>
-          </ClothNamebox>
-          <DetailNamebox>
-            <DetailName>사이즈</DetailName>
-            <DetailName>핏</DetailName>
-            <DetailName> 색상</DetailName>
-            <DetailName>제품번호</DetailName>
-          </DetailNamebox>
-          <DetailboxContainer>
-            <Detailbox>{clothData.size}</Detailbox>
-            <Detailbox>{clothData.fit}</Detailbox>
-            <Detailbox>{clothData.color}</Detailbox>
-            <Detailbox>{clothData.product_code}</Detailbox>
-          </DetailboxContainer>
-          <DetailName>URL</DetailName>
-          <Detailbox>
-            <a href={clothData.URL} target="_blank" rel="noopener noreferrer">
-              {clothData.URL}
-            </a>
-          </Detailbox>
-          <DetailName>메모</DetailName>
-          <CurvedRectangle>
-            <NoteArea
-              id="note-area"
-              placeholder="메모를 입력하세요"
-              value={note}
-              onChange={handleInputchange}
-            />
-          </CurvedRectangle>
-          <DetailName>실축 사이즈</DetailName>
-          <MeasureNamebox>
-            <MeasureName>총장</MeasureName>
-            <CurvedRectangle3>
-              <MeasureArea>{clothData.length || "-"}</MeasureArea>
-            </CurvedRectangle3>
-            <MeasureName>cm</MeasureName>
-          </MeasureNamebox>
-          <MeasureNamebox>
-            <MeasureName>어깨너비</MeasureName>
-            <CurvedRectangle3>
-              <MeasureArea>{clothData.shoulder || "-"}</MeasureArea>
-            </CurvedRectangle3>
-            <MeasureName>cm</MeasureName>
-          </MeasureNamebox>
-          <MeasureNamebox>
-            <MeasureName>가슴단면</MeasureName>
-            <CurvedRectangle3>
-              <MeasureArea>{clothData.chest || "-"}</MeasureArea>
-            </CurvedRectangle3>
-            <MeasureName>cm</MeasureName>
-          </MeasureNamebox>
-          <MeasureNamebox>
-            <MeasureName>암홀단면</MeasureName>
-            <CurvedRectangle3>
-              <MeasureArea>{clothData.armhole || "-"}</MeasureArea>
-            </CurvedRectangle3>
-            <MeasureName>cm</MeasureName>
-          </MeasureNamebox>
-          <MeasureNamebox>
-            <MeasureName>소매단면</MeasureName>
-            <CurvedRectangle3>
-              <MeasureArea>{clothData.sleeve || "-"}</MeasureArea>
-            </CurvedRectangle3>
-            <MeasureName>cm</MeasureName>
-          </MeasureNamebox>
-          <MeasureNamebox>
-            <MeasureName>소매길이</MeasureName>
-            <CurvedRectangle3>
-              <MeasureArea>{clothData.sleeve_length || "-"}</MeasureArea>
-            </CurvedRectangle3>
-            <MeasureName>cm</MeasureName>
-          </MeasureNamebox>
-          <MeasureNamebox>
-            <MeasureName>밑단단면</MeasureName>
-            <CurvedRectangle3>
-              <MeasureArea>{clothData.hem || "-"}</MeasureArea>
-            </CurvedRectangle3>
-            <MeasureName>cm</MeasureName>
-          </MeasureNamebox>
-        </Parent3>
-      </Parent2>
-      {renderPopup()} {/* 팝업 렌더링 */}
-    </div>
+                    onRequestClose={() => setisDeletePopupOpen(false)}
+                    style={{
+                      overlay: { backgroundColor: "rgba(81, 78, 78, 0.162)" },
+                      content: {
+                        border: "none",
+                        backgroundColor: "transparent",
+                        overflow: "hidden",
+                      },
+                    }}
+                  >
+                    <DeletePopUp
+                      isOpen={isDeletePopupOpen}
+                      onClose={() => setisDeletePopupOpen(false)}
+                    />
+                  </Modal>
+                )}
+              </ClothdebarContainer>
+            </ClothNameBox>
+            <DetailWrap>
+              <DetailItemWrap>
+                <DetailTitle>사이즈</DetailTitle>
+                <DetailContext>{clothData.size}</DetailContext>
+              </DetailItemWrap>
+              <DetailItemWrap>
+                <DetailTitle>핏</DetailTitle>
+                <DetailContext>{clothData.fit}</DetailContext>
+              </DetailItemWrap>
+              <DetailItemWrap>
+                <DetailTitle>색상</DetailTitle>
+                <DetailContext>{clothData.color}</DetailContext>
+              </DetailItemWrap>
+              <DetailItemWrap>
+                <DetailTitle>제품번호</DetailTitle>
+                <DetailContext>{clothData.product_code}</DetailContext>
+              </DetailItemWrap>
+            </DetailWrap>
+            <SimpleWrap>
+              <DetailTitle>URL</DetailTitle>
+              <UrlBox>
+                <UrlLink
+                  href={clothData.URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {clothData.URL}
+                </UrlLink>
+              </UrlBox>
+            </SimpleWrap>
+
+            <SimpleWrap>
+              <DetailTitle>메모</DetailTitle>
+              <CurvedRectangle>
+                <NoteArea
+                  id="note-area"
+                  placeholder="메모를 입력하세요"
+                  value={note}
+                  onChange={handleInputchange}
+                  SizeItem
+                />
+              </CurvedRectangle>
+            </SimpleWrap>
+
+            <SimpleWrap>
+              <DetailTitle>실축 사이즈</DetailTitle>
+              <SizeWrap>
+                <SizeList>
+                  <SizeItem>
+                    <SizeText>총장</SizeText>
+                    <CurvedRectangle3>
+                      {clothData.length || "-"}
+                    </CurvedRectangle3>
+                    <SizeText>cm</SizeText>
+                  </SizeItem>
+                  <SizeItem>
+                    <SizeText>어깨너비</SizeText>
+                    <CurvedRectangle3>
+                      {clothData.shoulder || "-"}
+                    </CurvedRectangle3>
+                    <SizeText>cm</SizeText>
+                  </SizeItem>
+                  <SizeItem>
+                    <SizeText>가슴단면</SizeText>
+                    <CurvedRectangle3>
+                      {clothData.chest || "-"}
+                    </CurvedRectangle3>
+                    <SizeText>cm</SizeText>
+                  </SizeItem>
+                  <SizeItem>
+                    <SizeText>암홀단면</SizeText>
+                    <CurvedRectangle3>
+                      {clothData.armhole || "-"}
+                    </CurvedRectangle3>
+                    <SizeText>cm</SizeText>
+                  </SizeItem>
+                  <SizeItem>
+                    <SizeText>소매단면</SizeText>
+                    <CurvedRectangle3>
+                      {clothData.sleeve || "-"}
+                    </CurvedRectangle3>
+                    <SizeText>cm</SizeText>
+                  </SizeItem>
+                  <SizeItem>
+                    <SizeText>소매길이</SizeText>
+                    <CurvedRectangle3>
+                      {clothData.sleeve_length || "-"}
+                    </CurvedRectangle3>
+                    <SizeText>cm</SizeText>
+                  </SizeItem>
+                  <SizeItem>
+                    <SizeText>밑단단면</SizeText>
+                    <CurvedRectangle3>{clothData.hem || "-"}</CurvedRectangle3>
+                    <SizeText>cm</SizeText>
+                  </SizeItem>
+                </SizeList>
+              </SizeWrap>
+            </SimpleWrap>
+          </RightWrap>
+        </SecondWrap>
+        {renderPopup()} {/* 팝업 렌더링 */}
+      </Wrap>
+    </Container>
   );
 }
 
