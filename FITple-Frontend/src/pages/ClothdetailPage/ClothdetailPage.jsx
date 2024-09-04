@@ -375,7 +375,6 @@ function ClothdetailPage() {
                   placeholder="메모를 입력하세요"
                   value={note}
                   onChange={handleInputchange}
-                  SizeItem
                 />
               </CurvedRectangle>
             </SimpleWrap>
