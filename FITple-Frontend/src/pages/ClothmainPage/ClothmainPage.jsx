@@ -30,7 +30,7 @@ const ClothmainPage = () => {
   const navigate = useNavigate();
 
   const goToResister = () => {
-    navigate("/clothregister");
+    navigate("/clothes/register");
   };
 
   // Api 데이터 가져오기
