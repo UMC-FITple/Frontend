@@ -13,7 +13,6 @@ import {
   LoginBTN,
   MenuItemWhite,
 } from "./Navbar.style";
-import SearchBox from "../SearchBox/SearchBox";
 import { useLocation } from "react-router-dom";
 
 const Navbar = ({ ...props }) => {
