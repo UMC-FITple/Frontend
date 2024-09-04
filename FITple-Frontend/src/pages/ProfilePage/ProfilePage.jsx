@@ -16,7 +16,7 @@ import Infom from "../../components/Infom/Infom";
 import { useNavigate } from "react-router-dom";
 import { getInform } from "../../../data/ProfileApi";
 import { logout } from "../../../data/LoginApi";
-
+import Cookies from "js-cookie";
 const ProfilePage = () => {
   const navigate = useNavigate();
   const [selectItem, setSelectItem] = useState(0);
@@ -50,9 +50,11 @@ const ProfilePage = () => {
 
   // 로그아웃 함수
   const handleLogout = async () => {
+    // 로그아웃을 통해 accessToken, refreshToken 제거
     const response = await logout();
+    // authToken 쿠키 삭제
+    Cookies.remove("authToken");
     navigate("/");
-    console.log("response");
   };
   useEffect(() => {
     getProfileData();
