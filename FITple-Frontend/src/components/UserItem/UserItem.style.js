@@ -5,6 +5,7 @@ export const Container = styled.div`
 `;
 export const ImgWrap = styled.div`
   position: relative;
+  cursor: pointer;
 `;
 
 export const ItemImg = styled.img`
