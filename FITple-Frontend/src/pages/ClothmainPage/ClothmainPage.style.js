@@ -108,6 +108,7 @@ export const PLUSbutton = styled.div`
   right: 100px;
   top: 500px;
   cursor: pointer;
+  z-index: 1;
 `;
 //수정하기
 export const EditButtons = styled.div`

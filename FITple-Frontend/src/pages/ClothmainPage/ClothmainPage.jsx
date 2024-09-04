@@ -44,6 +44,8 @@ const ClothmainPage = () => {
 
   return (
     <Container>
+      {/* 등록 추가버튼 */}
+      <PLUSbutton onClick={() => goToResister()} />
       {/* 위에 컨테이너 */}
       <FirstContainer>
         <SearchContainer>
@@ -64,7 +66,6 @@ const ClothmainPage = () => {
           </SideBarWrap>
           <ItemListWrap>
             <ItemList $main data={clothData} />
-            <PLUSbutton onClick={() => goToResister()} />
           </ItemListWrap>
         </Wrap>
       </SecondContainer>
