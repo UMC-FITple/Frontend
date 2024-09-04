@@ -13,7 +13,6 @@ import {
   LoginBTN,
   MenuItemWhite,
 } from "./Navbar.style";
-import SearchBox from "../SearchBox/SearchBox";
 import { useLocation } from "react-router-dom";
 
 const Navbar = ({ ...props }) => {
@@ -32,16 +31,32 @@ const Navbar = ({ ...props }) => {
           </LogoBox>
           {/* 메뉴 */}
           <MenuBox {...props}>
-            <MenuItem to="/cloth" {...props} $active={location.pathname === "/cloth"}>
+            <MenuItem
+              to="/cloth"
+              {...props}
+              $active={location.pathname === "/cloth"}
+            >
               옷장
             </MenuItem>
-            <MenuItem to="/recommend" {...props} $active={location.pathname === "/recommend"}>
+            <MenuItem
+              to="/recommend"
+              {...props}
+              $active={location.pathname === "/recommend"}
+            >
               추천
             </MenuItem>
-            <MenuItemWhite to="/search" {...props} $active={location.pathname === "/search"}>
+            <MenuItemWhite
+              to="/search"
+              {...props}
+              $active={location.pathname === "/search"}
+            >
               검색
             </MenuItemWhite>
-            <MenuItem to="/profile" {...props} $active={location.pathname === "/profile"}>
+            <MenuItem
+              to="/profile"
+              {...props}
+              $active={location.pathname === "/profile"}
+            >
               프로필
             </MenuItem>
           </MenuBox>
