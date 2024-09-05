@@ -100,13 +100,13 @@ export const ItemListWrap = styled.div`
   margin-bottom: 100px;
 `;
 
-export const PLUSbutton = styled.div`
-  background: url(assets/plus.svg);
+export const PLUSbutton = styled.img`
   position: fixed;
   width: 97px;
   height: 97px;
   right: 100px;
   top: 500px;
+  z-index: 1;
   cursor: pointer;
 `;
 //수정하기

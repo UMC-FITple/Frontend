@@ -1,5 +1,89 @@
-import styled from "styled-components";
+import { Link } from "react-router-dom";
+import styled, { css } from "styled-components";
+export const Container = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+  margin-bottom: 30px;
+`;
+export const Wrap = styled.div`
+  width: 80%;
+`;
+export const FirstWrap = styled.div`
+  width: 40%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+`;
+export const SecondWrap = styled.div`
+  display: flex;
+`;
+export const LeftWrap = styled.div`
+  width: 40%;
+`;
+export const RightWrap = styled.div`
+  width: 60%;
+  box-sizing: border-box;
+  padding-left: 3%;
+`;
 
+export const RightWrap2 = styled.div`
+  width: 60%;
+`;
+export const UploadContainer = styled.div`
+  background-color: #d9d9d9;
+  margin-bottom: 8px;
+  border-radius: 20px;
+  max-width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1; /* 1:1 비율로 설정 */
+  object-fit: cover; /* 이미지를 잘라서 비율을 유지 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+export const ProductContainer = styled.div``;
+export const StarContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+`;
+export const ProductDeImagemin = styled.img`
+  min-width: 20%;
+  height: auto;
+  aspect-ratio: 1 / 1; /* 1:1 비율로 설정 */
+  object-fit: cover; /* 이미지를 잘라서 비율을 유지 */
+  overflow-x: scroll;
+  border-radius: 0.625rem;
+  margin-bottom: 0.625rem;
+  background-color: #efefef;
+`;
+
+export const Imgcontainer = styled.div`
+  margin-bottom: 8px;
+  gap: 3%;
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: scroll;
+  &::-webkit-scrollbar {
+    width: 0.5rem;
+    height: 0.625rem;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #ddd;
+    border-radius: 0.3125rem;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+  }
+`;
+export const BackArrow = styled(Link)`
+  font-size: 36px;
+  text-decoration: none;
+  color: black;
+`;
 export const Parent1 = styled.div`
   display: flex;
   align-items: flex-start;
@@ -14,9 +98,7 @@ export const BackIcon = styled.div`
   cursor: pointer;
 `;
 // *모양
-export const SS = styled.div`
-  font-family: "SUIT";
-  font-size: 20px;
+export const SS = styled.span`
   font-weight: bold;
   color: #ff84a9;
 `;
@@ -41,16 +123,7 @@ export const Parent2 = styled.div`
   margin-top: 20px;
   margin-right: 150px;
 `;
-export const ProductDeImage = styled.div`
-  width: 400px;
-  height: 400px;
-  border-color: gray;
-  border-radius: 10px;
-  background-color: #efefef;
-  background-image: url();
-  background-position: center;
-  background-size: cover;
-`;
+
 export const Registerimage = styled.div`
   margin-left: 140px;
   margin-top: 120px;
@@ -60,77 +133,107 @@ export const Registerimage = styled.div`
   cursor: pointer;
 `;
 
-export const Imgcontainer = styled.div`
-  display: flex;
-  width: 400px;
-  flex-wrap: nowrap;
-  align-items: center;
-  justify-content: flex-start;
-  overflow-x: scroll;
-  margin-top: 10px;
-  &::-webkit-scrollbar {
-    width: 7px;
-    height: 10px;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background-color: #ddd;
-    border-radius: 5px;
-  }
-
-  &::-webkit-scrollbar-track {
-    background-color: #f1f1f1;
-  }
+export const SimpleWrap = styled.div`
+  margin-bottom: 30px;
 `;
-export const ProductDeImagemin = styled.img`
-  width: 80px;
-  height: 80px;
-  flex: 0 0 auto;
-  border-color: 1px solid gray;
-  border-radius: 10px;
-  margin-right: 10px;
-  margin-bottom: 10px;
+export const SizeWrap = styled.div``;
+export const SizeList = styled.div`
+  width: fit-content;
+`;
+export const SizeItem = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+`;
+export const SizeText = styled.div`
+  font-size: 20px;
+  font-weight: 600;
+  color: #838383;
+  white-space: nowrap;
+`;
+export const CurvedRectangle4 = styled.input`
+  width: 30%;
+  font-size: 16px;
+  font-weight: 500;
+  text-align: right;
+  border-radius: 12px;
+  border: none;
+  outline: none;
+
+  padding: 8px 24px 8px 0;
+  margin-left: 16px;
+  margin-right: 8px;
   background-color: #efefef;
-  background-image: url();
-  background-position: center;
-  background-size: cover;
 `;
 
 export const CurvedRectangle = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  width: 400px;
-  height: 20px;
-  border: 1px solid #efefef;
-  border-radius: 15px;
-  padding: 10px;
-  margin-top: 20px;
-  margin-left: 30px;
-  background-color: #efefef;
+  position: relative;
+  ${(props) =>
+    props.$cursor &&
+    css`
+      cursor: pointer;
+    `}
+`;
+export const DetailItemWrap = styled.div`
+  height: fit-content;
+  margin-bottom: 16px;
+`;
+export const DetailTitle = styled.div`
+  font-size: 20px;
+  font-weight: 600;
+  color: #0276fe;
+  margin-bottom: 8px;
+  white-space: nowrap;
 `;
 export const CurvedRectangle2 = styled.div`
   /*메모*/
-  width: 400px;
   height: 70px;
-  border: 1px solid #efefef;
-  border-radius: 15px;
-  padding: 10px;
-  margin-top: 20px;
-  margin-left: 30px;
-  background-color: #efefef;
+  width: 100%;
 `;
-export const NoteArea = styled.textarea`
+export const UploadWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+`;
+export const UploadIcon = styled.img`
+  height: 75px;
+  width: 75px;
+`;
+export const UploadText = styled.p`
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 4px;
+  text-decoration: underline;
+`;
+
+export const UploadImg = styled.img`
+  background-color: #d9d9d9;
+  margin-bottom: 8px;
+  border-radius: 20px;
+  max-width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1; /* 1:1 비율로 설정 */
+  object-fit: cover; /* 이미지를 잘라서 비율을 유지 */
+`;
+
+export const NoteArea = styled.input`
   width: 100%;
   height: 100%;
-  resize: none;
+  border-radius: 10px;
   border: none;
+
   outline: none;
-  font-family: sans-serif;
-  font-size: 15px;
-  font-weight: bold;
-  background-color: transparent;
-  margin-left: 30px;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 12px 30px 12px 30px;
+  background-color: #efefef;
 `;
 export const DetailName = styled.div`
   display: flex;
@@ -155,43 +258,47 @@ export const Parent3 = styled.div`
   flex-direction: column;
   margin-top: 50px;
 `;
-export const Detailbox = styled.div`
-  font-size: 20px;
-  font-family: "SUIT Variable", sans-serif;
-  font-weight: bold;
-  color: #000000;
-  margin-left: 20px;
+export const Detailbox = styled.div``;
+
+export const MemoTextArea = styled.textarea`
+  box-sizing: border-box;
+  width: 100%;
+  border-radius: 10px;
+  border: none;
+  resize: none;
+  outline: none;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 12px 30px 12px 30px;
+  background-color: #efefef;
+`;
+
+export const SearchIconImg = styled.img`
+  position: absolute;
+  left: 20px;
 `;
 
 export const Toggledown = styled.div`
-  font-family: "SUIT";
-  font-style: normal;
+  position: absolute;
+  right: 20px;
   font-weight: 500;
   font-size: 28px;
-  line-height: 55px;
-  display: flex;
-  align-items: center;
-  text-align: center;
   color: #838383;
   transform: rotate(-90deg);
-  margin-right: 20px;
   cursor: pointer;
 `;
 export const DropdownContainer = styled.div`
   position: relative;
-  width: 400px;
-  left: 260px;
   display: ${(props) => (props.isToggle ? "block" : "none")};
 `;
 export const DropdownList = styled.ul`
+  width: 100%;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  justify-content: flex-start;
-  align-items: flex-start;
   position: absolute;
-  top: 100%;
-  right: 210px;
+  /* top: 100%;
+  right: 210px; */
   background-color: #f8f8f8;
   padding: 0;
   z-index: 1;
@@ -199,7 +306,6 @@ export const DropdownList = styled.ul`
 export const DropdownItem = styled.li`
   display: flex;
   padding: 1rem 1.5rem;
-  width: 370px;
   cursor: pointer;
 
   &:hover {
@@ -207,12 +313,13 @@ export const DropdownItem = styled.li`
   }
 `;
 export const Dropdefault = styled.div`
+  min-height: 20px;
   width: 100%;
-  height: 70%;
-  font-family: "SUIT";
-  font-size: 15px;
-  font-weight: bold;
-  margin-left: 20px;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 12px 0 12px 30px;
+  background-color: #efefef;
+  border-radius: 10px;
 `;
 
 /*실축사이즈 */
@@ -259,7 +366,7 @@ export const MeasureArea = styled.textarea`
   box-sizing: border-box;
 `;
 export const StyledButton = styled.button`
-  width: 500px;
+  width: 100%;
   height: 50px;
   background-color: #0075ff;
   border: none;
@@ -268,10 +375,8 @@ export const StyledButton = styled.button`
   font-size: 15px;
   font-weight: bold;
   cursor: pointer;
-  margin-top: 30px;
 `;
 export const SearchIconBox = styled.button`
-  background: none;
   border: none;
   cursor: pointer;
   position: absolute;
