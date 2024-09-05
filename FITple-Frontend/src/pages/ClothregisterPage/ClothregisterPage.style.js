@@ -300,17 +300,29 @@ export const DropdownList = styled.ul`
   /* top: 100%;
   right: 210px; */
   background-color: #f8f8f8;
+  border-radius: 10px;
   padding: 0;
   z-index: 1;
 `;
 export const DropdownItem = styled.li`
+  border-bottom: ${(props) => (props.$isLast ? "none" : "1px solid #d9d9d9")};
+
   display: flex;
   padding: 1rem 1.5rem;
   cursor: pointer;
-
   &:hover {
     background-color: #f0f0f0;
   }
+  ${(props) =>
+    props.$isFirst &&
+    css`
+      border-radius: 10px 10px 0px 0px;
+    `}
+  ${(props) =>
+    props.$isLast &&
+    css`
+      border-radius: 0px 0px 10px 10px;
+    `}
 `;
 export const Dropdefault = styled.div`
   min-height: 20px;

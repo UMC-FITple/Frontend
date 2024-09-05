@@ -355,21 +355,24 @@ const ClothregisterPage = () => {
                 <DetailTitle>
                   분류<SS>*</SS>
                 </DetailTitle>
-                <CurvedRectangle>
+                <CurvedRectangle
+                  onClick={() => handleDropdown("category")}
+                  $cursor
+                >
                   <Dropdefault>{dropdown.category.value}</Dropdefault>
-                  <Toggledown onClick={() => handleDropdown("category")}>
-                    &lt;
-                  </Toggledown>
+                  <Toggledown>&lt;</Toggledown>
                 </CurvedRectangle>
 
                 <DropdownContainer isToggle={dropdown.category.isOpen}>
                   <DropdownList>
-                    {clothingCategories.map((category) => (
+                    {clothingCategories.map((category, index) => (
                       <DropdownItem
                         key={category.value}
                         onClick={
                           () => handelDropdownSelect("category", category.label) // 숫자 값으로 선택
                         }
+                        $isFirst={index == 0} //첫번째 항목 체크
+                        $isLast={index === clothingCategories.length - 1} // 마지막 항목 체크
                       >
                         {category.label}
                       </DropdownItem>
@@ -394,18 +397,18 @@ const ClothregisterPage = () => {
                 <DetailTitle>
                   핏<SS>*</SS>
                 </DetailTitle>
-                <CurvedRectangle>
+                <CurvedRectangle onClick={() => handleDropdown("fit")} $cursor>
                   <Dropdefault>{dropdown.fit.value}</Dropdefault>
-                  <Toggledown onClick={() => handleDropdown("fit")}>
-                    &lt;
-                  </Toggledown>
+                  <Toggledown>&lt;</Toggledown>
                 </CurvedRectangle>
                 <DropdownContainer isToggle={dropdown.fit.isOpen}>
                   <DropdownList>
-                    {fitOptions.map((fit) => (
+                    {fitOptions.map((fit, index) => (
                       <DropdownItem
                         key={fit.value}
                         onClick={() => handelDropdownSelect("fit", fit.value)} // 숫자 값으로 선택
+                        $isFirst={index == 0} //첫번째 항목 체크
+                        $isLast={index === fitOptions.length - 1} // 마지막 항목 체크
                       >
                         {fit.label}
                       </DropdownItem>
