@@ -58,54 +58,36 @@ import CompareInputPopUp from "../../components/CompareInputPopUp/CompareInputPo
 import CompareSearchPopUp from "../../components/CompareSearchPopUp/CompareSearchPopUp";
 import CompareLoading from "../../components/CompareLoading/CompareLoading";
 import CompareResult from "../../components/CompareResult/CompareResult";
-import useAuthStore from "../../../data/store/userAuthStore"; // 토큰을 가져오기 위해 zustand의 store import
-
+import { ClothDetailApi } from "../../../data/ClothApi";
 function ClothdetailPage() {
   const { clothId } = useParams(); // URL에서 clothId 가져오기
   const [clothData, setClothData] = useState(null); // 가져온 데이터를 저장할 상태
-  const [note, setNote] = useState("");
-  const [isEdit, setIsEdit] = useState(false);
   const [isDeletePopupOpen, setisDeletePopupOpen] = useState(false);
   const [rating, setRating] = useState(0);
   const [isBookmark, setIsBookmark] = useState(false);
   const [popupOpen, setPopUpOpen] = useState(""); // 팝업 상태 관리
   const [compareData, setCompareData] = useState([]);
   const [isOpen, setIsOpen] = useState(false); // 수정하기, 삭제하기 토글
-  // Zustand를 통해 token 가져오기
-  const { token } = useAuthStore();
 
+  // detail 정보 불러오기
   useEffect(() => {
-    const fetchClothDetail = async () => {
+    const getClothesDetail = async () => {
+      const response = await ClothDetailApi(clothId);
+      const data = await response.json();
+      console.log(data);
       try {
-        const response = await fetch(
-          `http://localhost:3000/FITple/my/closet/${clothId}`, // API 주소
-          {
-            method: "GET",
-            headers: {},
-            credentials: "include",
-          }
-        );
-
         if (response.ok) {
-          const data = await response.json();
-          if (data.result && data.result.clothData.length > 0) {
-            const clothDetail = data.result.clothData[0]; // 첫 번째 아이템을 사용
-            setClothData(clothDetail); // 받아온 데이터를 상태에 저장
-            setNote(clothDetail.memo || ""); // 서버에서 받아온 메모를 초기화
-            setRating(clothDetail.rating || 0); // 평점이 있다면 초기화
-          } else {
-            console.error("No cloth data found");
-          }
-        } else {
-          console.error("Failed to fetch cloth detail:", response.statusText);
+          setClothData(data.result.clothData[0]);
+          // 별점 매기기
+          setRating(data.result.clothData[0].rating || 0);
         }
       } catch (error) {
-        console.error("Error fetching cloth detail:", error);
+        alert("데이터를 불러 오는중 오류가 발생했습니다.");
       }
     };
 
-    fetchClothDetail();
-  }, [clothId, token]); // clothId 또는 token이 변경될 때마다 데이터를 다시 가져옴
+    getClothesDetail();
+  }, [clothId]); // clothId 또는 token이 변경될 때마다 데이터를 다시 가져옴
 
   useEffect(() => {
     // 팝업이 열릴 때에도 기본 UI 요소가 사라지지 않도록 관리
@@ -115,10 +97,6 @@ function ClothdetailPage() {
       document.body.style.overflow = "unset";
     }
   }, [popupOpen]);
-
-  const toggleEdit = () => {
-    setIsEdit(!isEdit);
-  };
 
   const handleDeleteCloth = () => {
     setisDeletePopupOpen(!isDeletePopupOpen);
@@ -132,6 +110,7 @@ function ClothdetailPage() {
     setRating(newRating);
   };
 
+  // 별그리기 아이콘
   const renderStars = () => {
     const stars = [];
     for (let i = 0; i < 5; i++) {
@@ -239,6 +218,7 @@ function ClothdetailPage() {
   if (!clothData) {
     return <div>Loading...</div>; // 데이터가 로드되기 전 로딩 표시
   }
+
   // 수정하기, 삭제하기 토글관리
   const showOptionBox = () => {
     setIsOpen(!isOpen);
@@ -246,6 +226,7 @@ function ClothdetailPage() {
 
   return (
     <Container>
+      {/* 사이즈 비교 & 북마크 아이콘 */}
       <ChangeButton
         onClick={comparePopUpOpen}
         src="../assets/changebutton.svg"
@@ -301,7 +282,7 @@ function ClothdetailPage() {
               </BrandWrap>
               <ItemName>{clothData.cloth_name}</ItemName>
 
-              <ClothdebarContainer onClick={toggleEdit}>
+              <ClothdebarContainer>
                 {/* <Clothdebar src="../assets/detailbar.svg" />
                 <Clothdebar src="../assets/detailbar.svg" />
                 <Clothdebar src="../assets/detailbar.svg" />
@@ -339,19 +320,19 @@ function ClothdetailPage() {
             <DetailWrap>
               <DetailItemWrap>
                 <DetailTitle>사이즈</DetailTitle>
-                <DetailContext>{clothData.size}</DetailContext>
+                <DetailContext>{clothData.size || "-"}</DetailContext>
               </DetailItemWrap>
               <DetailItemWrap>
                 <DetailTitle>핏</DetailTitle>
-                <DetailContext>{clothData.fit}</DetailContext>
+                <DetailContext>{clothData.fit || "-"}</DetailContext>
               </DetailItemWrap>
               <DetailItemWrap>
                 <DetailTitle>색상</DetailTitle>
-                <DetailContext>{clothData.color}</DetailContext>
+                <DetailContext>{clothData.color || "-"}</DetailContext>
               </DetailItemWrap>
               <DetailItemWrap>
                 <DetailTitle>제품번호</DetailTitle>
-                <DetailContext>{clothData.product_code}</DetailContext>
+                <DetailContext>{clothData.product_code || "-"}</DetailContext>
               </DetailItemWrap>
             </DetailWrap>
             <SimpleWrap>
@@ -373,9 +354,8 @@ function ClothdetailPage() {
                 <NoteArea
                   id="note-area"
                   placeholder="메모를 입력하세요"
-                  value={note}
+                  value={clothData.memo}
                   onChange={handleInputchange}
-                  SizeItem
                 />
               </CurvedRectangle>
             </SimpleWrap>

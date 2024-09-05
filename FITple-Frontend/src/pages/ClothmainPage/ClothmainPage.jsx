@@ -20,6 +20,7 @@ import { ClothApi } from "../../../data/ClothApi";
 import SearchIcon from "../../../assets/search.svg";
 import ItemList from "../../components/ItemList/ItemList";
 import { useNavigate } from "react-router-dom";
+import PlusIcon from "../../../assets/plus.svg";
 
 const ClothmainPage = () => {
   const [category, setCategory] = useState(undefined);
@@ -29,7 +30,7 @@ const ClothmainPage = () => {
   const navigate = useNavigate();
 
   const goToResister = () => {
-    navigate("/clothregister");
+    navigate("/clothes/register");
   };
 
   // Api 데이터 가져오기
@@ -44,6 +45,8 @@ const ClothmainPage = () => {
 
   return (
     <Container>
+      {/* 등록 추가버튼 */}
+      <PLUSbutton src={PlusIcon} onClick={() => goToResister()} />
       {/* 위에 컨테이너 */}
       <FirstContainer>
         <SearchContainer>
@@ -64,7 +67,6 @@ const ClothmainPage = () => {
           </SideBarWrap>
           <ItemListWrap>
             <ItemList $main data={clothData} />
-            <PLUSbutton onClick={() => goToResister()} />
           </ItemListWrap>
         </Wrap>
       </SecondContainer>
