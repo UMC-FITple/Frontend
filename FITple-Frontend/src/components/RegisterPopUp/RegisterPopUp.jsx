@@ -8,7 +8,7 @@ import {
 } from "./RegisterPopUp.style";
 import { ClothRegister } from "../../../data/RegisterApi";
 import { useNavigate } from "react-router-dom";
-const RegisterPopUp = ({ onClose, requestBody }) => {
+const RegisterPopUp = ({ onClose, value }) => {
   const navigate = useNavigate();
   const handleClose = () => {
     onClose();
@@ -17,7 +17,7 @@ const RegisterPopUp = ({ onClose, requestBody }) => {
   const handleRegister = async () => {
     // 등록 관련 로직이 있을 경우 여기에 추가
     onClose(); // 모달 닫기
-    await ClothRegister(requestBody);
+    await ClothRegister(value);
     navigate("/clothes");
   };
 

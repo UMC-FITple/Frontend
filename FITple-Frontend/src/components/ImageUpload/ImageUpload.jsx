@@ -15,7 +15,7 @@ import { useState } from "react";
 import { useRef } from "react";
 import { UploadImage } from "../../../data/RegisterApi";
 
-const ImageUpload = ({ setImageUrl }) => {
+const ImageUpload = ({ value, setValue }) => {
   const [previewImg, setPreviewImg] = useState([]); // 이미지 파일의 url을 담은 상태
   const fileInputRef = useRef(null);
   // 입력한 input의 file가져오기
@@ -35,7 +35,10 @@ const ImageUpload = ({ setImageUrl }) => {
 
     const response = await UploadImage(formData);
     console.log("이미지", response.result.image);
-    setImageUrl(response.result.image);
+    setValue({
+      ...value,
+      image: response.result.image,
+    });
   };
 
   // 파일 업로드 버튼 클릭 시 input 클릭 이벤트 트리거

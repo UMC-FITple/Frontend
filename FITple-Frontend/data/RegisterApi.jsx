@@ -19,7 +19,7 @@ export const ClothRegister = async (requestBody) => {
 
     return await response.json();
   } catch (error) {
-    console.error("이미지 업로드 요청 중 오류가 발생했습니다.", error);
+    console.error("등록 요청 중 오류가 발생했습니다.", error);
     throw new Error("네트워크 오류가 발생했습니다. 잠시 후 다시 시도해주세요.");
   }
 };
