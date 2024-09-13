@@ -260,7 +260,7 @@ const ClothregisterPage = () => {
               {/* 제품명 */}
               <DetailItemWrap>
                 <DetailTitle>
-                  제품명 <SS>*</SS>
+                  제품명<SS>*</SS>
                 </DetailTitle>
                 <CurvedRectangle>
                   <NoteArea
