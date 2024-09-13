@@ -45,6 +45,7 @@ import {
   SizeText,
   CurvedRectangle4,
   Detailbox,
+  RegisterModal,
 } from "./ClothregisterPage.style";
 import SearchIcon from "/assets/SearchIcon.svg";
 import BrandSearch from "../../components/BrandSearch/BrandSearch";
@@ -52,8 +53,6 @@ import RegisterPopUp from "../../components/RegisterPopUp/RegisterPopUp";
 import ImageUpload from "../../components/ImageUpload/ImageUpload";
 import FullStarIcon from "../../../assets/Star8.svg";
 import EmptyStarIcon from "../../../assets/Star5.svg";
-
-const localhost = "http://localhost:3000";
 
 const ClothregisterPage = () => {
   // 카테고리 객체
@@ -100,6 +99,8 @@ const ClothregisterPage = () => {
   const [registerpopup, setRegisterpopup] = useState(false);
   const [brandSearchOpen, setBrandSearchOpen] = useState(false);
 
+  const [requestBody, SetRequestBody] = useState({});
+
   // 브랜드 검색 핸들러
   const handleBrandSearch = () => {
     setBrandSearchOpen(!brandSearchOpen);
@@ -145,27 +146,8 @@ const ClothregisterPage = () => {
       sleeve_length: measurements.sleeve_length || null,
       hem: measurements.hem || null,
     };
-
-    console.log("Request Body:", requestBody); // 디버깅을 위해 출력
-
-    try {
-      const response = await fetch(`${localhost}/FITple/my/closet`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(requestBody),
-        credentials: "include",
-      });
-
-      if (response.ok) {
-        setRegisterpopup(true);
-      } else {
-        console.error("Failed to register clothing:", response.statusText);
-      }
-    } catch (error) {
-      console.error("Clothing registration error:", error);
-    }
+    setRegisterpopup(true);
+    SetRequestBody(requestBody);
   };
 
   const handleDropdown = (type) => {
@@ -196,8 +178,6 @@ const ClothregisterPage = () => {
   const renderStars = () => {
     const stars = [];
     for (let i = 0; i < 5; i++) {
-      const isFilledStar = i < rating;
-      const StarComponent = isFilledStar ? FullStar : EmptyStar;
       i < rating
         ? stars.push(
             <FullStar
@@ -488,22 +468,6 @@ const ClothregisterPage = () => {
               <StyledButton onClick={handleRegister}>
                 옷 정보 등록하기
               </StyledButton>
-              {registerpopup && (
-                <Modal
-                  isOpen={registerpopup}
-                  onRequestClose={() => setRegisterpopup(false)}
-                  style={{
-                    overlay: { backgroundColor: "rgba(81, 78, 78, 0.162)" },
-                    content: {
-                      border: "none",
-                      backgroundColor: "transparent",
-                      overflow: "hidden",
-                    },
-                  }}
-                >
-                  <RegisterPopUp onClose={() => setRegisterpopup(false)} />
-                </Modal>
-              )}
             </RightWrap2>
           </RightWrap>
         </SecondWrap>
@@ -691,6 +655,20 @@ const ClothregisterPage = () => {
           </Parent3>
         </Parent1>
       </Wrap>
+      {registerpopup && (
+        <RegisterModal
+          isOpen={registerpopup}
+          onRequestClose={() => setRegisterpopup(false)}
+          style={{
+            overlay: { backgroundColor: "rgba(81, 78, 78, 0.162)" },
+          }}
+        >
+          <RegisterPopUp
+            onClose={() => setRegisterpopup(false)}
+            requestBody={requestBody}
+          />
+        </RegisterModal>
+      )}
     </Container>
   );
 };

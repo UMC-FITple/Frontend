@@ -1,3 +1,4 @@
+import ReactModal from "react-modal";
 import { Link } from "react-router-dom";
 import styled, { css } from "styled-components";
 export const Container = styled.div`
@@ -366,4 +367,11 @@ export const ModalButton = styled.button`
   &:hover {
     background-color: #005bb5;
   }
+`;
+
+export const RegisterModal = styled(ReactModal)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
 `;
