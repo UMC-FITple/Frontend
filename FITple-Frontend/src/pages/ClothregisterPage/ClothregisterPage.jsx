@@ -50,6 +50,8 @@ import SearchIcon from "/assets/SearchIcon.svg";
 import BrandSearch from "../../components/BrandSearch/BrandSearch";
 import RegisterPopUp from "../../components/RegisterPopUp/RegisterPopUp";
 import ImageUpload from "../../components/ImageUpload/ImageUpload";
+import FullStarIcon from "../../../assets/Star8.svg";
+import EmptyStarIcon from "../../../assets/Star5.svg";
 
 const localhost = "http://localhost:3000";
 
@@ -196,13 +198,21 @@ const ClothregisterPage = () => {
     for (let i = 0; i < 5; i++) {
       const isFilledStar = i < rating;
       const StarComponent = isFilledStar ? FullStar : EmptyStar;
-      stars.push(
-        <StarComponent
-          key={i}
-          onClick={() => handleStarClick(i + 1)}
-          style={{ cursor: "pointer" }}
-        />
-      );
+      i < rating
+        ? stars.push(
+            <FullStar
+              src={FullStarIcon}
+              key={i}
+              onClick={() => handleStarClick(i + 1)}
+            />
+          )
+        : stars.push(
+            <EmptyStar
+              src={EmptyStarIcon}
+              key={i}
+              onClick={() => handleStarClick(i + 1)}
+            />
+          );
     }
     return stars;
   };

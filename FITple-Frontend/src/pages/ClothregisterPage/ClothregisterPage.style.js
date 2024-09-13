@@ -58,15 +58,15 @@ export const SS = styled.span`
   color: #ff84a9;
 `;
 
-export const FullStar = styled.div`
+export const FullStar = styled.img`
   width: 38px;
   height: 37px;
-  background: url(assets/Star8.svg);
+  cursor: pointer;
 `;
-export const EmptyStar = styled.div`
+export const EmptyStar = styled.img`
   width: 38px;
   height: 37px;
-  background: url(assets/Star5.svg);
+  cursor: pointer;
 `;
 export const Parent2 = styled.div`
   display: flex;
