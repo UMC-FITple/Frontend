@@ -1,14 +1,10 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import Modal from "react-modal";
-import CameraImg from "../../../assets/camera.svg";
 import {
   SS,
   Parent1,
   Parent2,
   Parent3,
-  ProductDeImagemin,
-  Imgcontainer,
   CurvedRectangle,
   DetailNamebox,
   DetailName,
@@ -37,7 +33,6 @@ import {
   SecondWrap,
   LeftWrap,
   RightWrap,
-  ProductContainer,
   DetailTitle,
   DetailItemWrap,
   RightWrap2,
@@ -49,17 +44,12 @@ import {
   SizeItem,
   SizeText,
   CurvedRectangle4,
-  UploadWrap,
-  UploadText,
-  UploadContainer,
-  UploadIcon,
   Detailbox,
-  UploadImg,
 } from "./ClothregisterPage.style";
 import SearchIcon from "/assets/SearchIcon.svg";
 import BrandSearch from "../../components/BrandSearch/BrandSearch";
 import RegisterPopUp from "../../components/RegisterPopUp/RegisterPopUp";
-import { useRef } from "react";
+import ImageUpload from "../../components/ImageUpload/ImageUpload";
 
 const localhost = "http://localhost:3000";
 
@@ -107,16 +97,6 @@ const ClothregisterPage = () => {
   });
   const [registerpopup, setRegisterpopup] = useState(false);
   const [brandSearchOpen, setBrandSearchOpen] = useState(false);
-  const [previewImg, setPreviewImg] = useState([]); // 이미지 파일의 url을 담은 상태
-  const fileInputRef = useRef(null);
-
-  // 이미지 URL 입력 모달 핸들러
-  const handleImageModalOpen = () => setImageModalOpen(true);
-  const handleImageModalClose = () => setImageModalOpen(false);
-  const handleImageUrlSubmit = () => {
-    setImageUrl(tempImageUrl);
-    handleImageModalClose();
-  };
 
   // 브랜드 검색 핸들러
   const handleBrandSearch = () => {
@@ -127,25 +107,6 @@ const ClothregisterPage = () => {
   const handleBrandSelect = (selectedBrandName) => {
     setBrand(selectedBrandName);
     setBrandSearchOpen(false);
-  };
-
-  // 입력한 input의 file가져오기
-  const handleFileUpload = (e) => {
-    // input에 업로드한 파일들을 fileArr 변수에 담는다.
-    let fileArr = e.target.files;
-    // setPostImg(Array.from(fileArr));
-
-    let fileRead = new FileReader();
-    fileRead.onload = () => {
-      console.log("파일 잘들어갔나?", fileRead.result);
-      setPreviewImg(fileRead.result);
-    };
-    fileRead.readAsDataURL(fileArr[0]);
-  };
-
-  // 파일 업로드 버튼 클릭 시 input 클릭 이벤트 트리거
-  const handleButtonClick = () => {
-    fileInputRef.current.click();
   };
 
   // 옷 정보 등록 함수
@@ -254,42 +215,8 @@ const ClothregisterPage = () => {
         </FirstWrap>
         <SecondWrap>
           <LeftWrap>
-            {/* 이미지 업로드 */}
-            <input
-              type="file"
-              onChange={handleFileUpload}
-              ref={fileInputRef}
-              style={{ display: "none" }}
-            />
-
-            <UploadContainer>
-              {previewImg.length === 0 ? (
-                <UploadWrap
-                  onClick={() => {
-                    // handleImageModalOpen();
-                    handleButtonClick();
-                  }}
-                >
-                  <UploadIcon src={CameraImg} />
-                  <UploadText>이미지</UploadText>
-                  <UploadText>업로드하기</UploadText>
-                </UploadWrap>
-              ) : (
-                <UploadImg src={previewImg} />
-              )}
-            </UploadContainer>
-
-            <ProductContainer>
-              {/* 다중 이미지 로딩 가능 */}
-              <Imgcontainer>
-                <ProductDeImagemin />
-                <ProductDeImagemin />
-                <ProductDeImagemin />
-                <ProductDeImagemin />
-                <ProductDeImagemin />
-                <ProductDeImagemin />
-              </Imgcontainer>
-            </ProductContainer>
+            {/* 이미지 업로드 컴포넌트 */}
+            <ImageUpload setImageUrl={setImageUrl} />
           </LeftWrap>
           <RightWrap>
             <RightWrap2>
@@ -297,12 +224,7 @@ const ClothregisterPage = () => {
               <DetailItemWrap>
                 <DetailTitle>브랜드</DetailTitle>
                 <CurvedRectangle onClick={handleBrandSearch} $cursor>
-                  {/* 이거는 뭐야 */}
-                  {/* <NoteArea value={brand} readOnly />
-                  <SearchIconBox>
-                    <img src={SearchIcon} alt="브랜드 검색" />
-                  </SearchIconBox> */}
-                  <Dropdefault />
+                  <Dropdefault $icon>{brand}</Dropdefault>
                   <SearchIconImg src={SearchIcon} />
                 </CurvedRectangle>
                 {brandSearchOpen && (
@@ -590,18 +512,18 @@ const ClothregisterPage = () => {
               )}
             </ProductDeImage> */}
 
-            <Imgcontainer>
+            {/* <Imgcontainer>
               <ProductDeImagemin />
               <ProductDeImagemin />
               <ProductDeImagemin />
               <ProductDeImagemin />
               <ProductDeImagemin />
               <ProductDeImagemin />
-            </Imgcontainer>
+            </Imgcontainer> */}
           </Parent2>
           <Parent3>
             {/* 이미지 URL 입력 모달 */}
-            <Modal
+            {/* <Modal
               isOpen={imageModalOpen}
               onRequestClose={handleImageModalClose}
               style={{
@@ -623,7 +545,7 @@ const ClothregisterPage = () => {
                 />
                 <ModalButton onClick={handleImageUrlSubmit}>확인</ModalButton>
               </ModalContainer>
-            </Modal>
+            </Modal> */}
             {/* 
             <DetailNamebox>
               <DetailName>실축 사이즈</DetailName>

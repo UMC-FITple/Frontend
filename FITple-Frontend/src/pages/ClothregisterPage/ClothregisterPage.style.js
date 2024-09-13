@@ -3,11 +3,11 @@ import styled, { css } from "styled-components";
 export const Container = styled.div`
   display: flex;
   justify-content: center;
-  margin-top: 30px;
+  padding-top: 30px;
   margin-bottom: 30px;
 `;
 export const Wrap = styled.div`
-  width: 80%;
+  width: 996px;
 `;
 export const FirstWrap = styled.div`
   width: 40%;
@@ -18,66 +18,21 @@ export const FirstWrap = styled.div`
 `;
 export const SecondWrap = styled.div`
   display: flex;
+  display: flex;
+  justify-content: center;
+  gap: 50px;
 `;
 export const LeftWrap = styled.div`
-  width: 40%;
+  width: 400px;
 `;
 export const RightWrap = styled.div`
-  width: 60%;
-  box-sizing: border-box;
-  padding-left: 3%;
+  width: 400px;
 `;
 
-export const RightWrap2 = styled.div`
-  width: 60%;
-`;
-export const UploadContainer = styled.div`
-  background-color: #d9d9d9;
-  margin-bottom: 8px;
-  border-radius: 20px;
-  max-width: 100%;
-  height: auto;
-  aspect-ratio: 1 / 1; /* 1:1 비율로 설정 */
-  object-fit: cover; /* 이미지를 잘라서 비율을 유지 */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-export const ProductContainer = styled.div``;
+export const RightWrap2 = styled.div``;
 export const StarContainer = styled.div`
   display: flex;
   justify-content: flex-end;
-`;
-export const ProductDeImagemin = styled.img`
-  min-width: 20%;
-  height: auto;
-  aspect-ratio: 1 / 1; /* 1:1 비율로 설정 */
-  object-fit: cover; /* 이미지를 잘라서 비율을 유지 */
-  overflow-x: scroll;
-  border-radius: 0.625rem;
-  margin-bottom: 0.625rem;
-  background-color: #efefef;
-`;
-
-export const Imgcontainer = styled.div`
-  margin-bottom: 8px;
-  gap: 3%;
-  display: flex;
-  flex-wrap: nowrap;
-  overflow-x: scroll;
-  &::-webkit-scrollbar {
-    width: 0.5rem;
-    height: 0.625rem;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background-color: #ddd;
-    border-radius: 0.3125rem;
-  }
-
-  &::-webkit-scrollbar-track {
-    background-color: #f1f1f1;
-  }
 `;
 export const BackArrow = styled(Link)`
   font-size: 36px;
@@ -196,33 +151,6 @@ export const CurvedRectangle2 = styled.div`
   height: 70px;
   width: 100%;
 `;
-export const UploadWrap = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  cursor: pointer;
-`;
-export const UploadIcon = styled.img`
-  height: 75px;
-  width: 75px;
-`;
-export const UploadText = styled.p`
-  font-size: 24px;
-  font-weight: 600;
-  margin-bottom: 4px;
-  text-decoration: underline;
-`;
-
-export const UploadImg = styled.img`
-  background-color: #d9d9d9;
-  margin-bottom: 8px;
-  border-radius: 20px;
-  max-width: 100%;
-  height: auto;
-  aspect-ratio: 1 / 1; /* 1:1 비율로 설정 */
-  object-fit: cover; /* 이미지를 잘라서 비율을 유지 */
-`;
-
 export const NoteArea = styled.input`
   width: 100%;
   height: 100%;
@@ -325,6 +253,8 @@ export const DropdownItem = styled.li`
     `}
 `;
 export const Dropdefault = styled.div`
+  display: flex;
+  align-items: center;
   min-height: 20px;
   width: 100%;
   font-size: 16px;
@@ -332,6 +262,11 @@ export const Dropdefault = styled.div`
   padding: 12px 0 12px 30px;
   background-color: #efefef;
   border-radius: 10px;
+  ${(props) =>
+    props.$icon &&
+    css`
+      padding: 12px 0 12px 42px;
+    `}
 `;
 
 /*실축사이즈 */
