@@ -37,8 +37,6 @@ const ClothregisterPage = () => {
   });
   const [registerpopup, setRegisterpopup] = useState(false);
 
-  const [requestBody, SetRequestBody] = useState({});
-
   return (
     <Container>
       <Wrap>
@@ -52,7 +50,7 @@ const ClothregisterPage = () => {
           </LeftWrap>
           <RightWrap>
             <RightWrap2>
-              {/* 브랜드 */}
+              {/* 등록 정보 컴포넌느 */}
               <RegisterInfo
                 value={value}
                 setValue={setValue}

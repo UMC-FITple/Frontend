@@ -51,6 +51,7 @@ import {
   SizeWrap,
   SizeList,
   BookMarkIcon,
+  DeleteModal,
 } from "./ClothdetailPage.style";
 import DeletePopUp from "../../components/DeletePopUp/DeletePopUp";
 import ComparePopUp from "../../components/ComparePopUp/ComparePopUp";
@@ -122,6 +123,7 @@ function ClothdetailPage() {
 
   const handleDeleteCloth = () => {
     setisDeletePopupOpen(!isDeletePopupOpen);
+    setIsOpen(!isOpen);
   };
 
   const handleInputchange = (e) => {
@@ -296,13 +298,15 @@ function ClothdetailPage() {
                 </OptionBTN>
                 <OptionBox $active={isOpen}>
                   <OptionItem $first>옷 정보 수정하기</OptionItem>
-                  <OptionItem $last>옷 정보 삭제하기</OptionItem>
+                  <OptionItem $last onClick={handleDeleteCloth}>
+                    옷 정보 삭제하기
+                  </OptionItem>
                 </OptionBox>
               </BrandWrap>
               <ItemName>{clothData.cloth_name}</ItemName>
 
-              <ClothdebarContainer onClick={toggleEdit}>
-                {/* <Clothdebar src="../assets/detailbar.svg" />
+              {/* <ClothdebarContainer onClick={toggleEdit}> */}
+              {/* <Clothdebar src="../assets/detailbar.svg" />
                 <Clothdebar src="../assets/detailbar.svg" />
                 <Clothdebar src="../assets/detailbar.svg" />
                 {isEdit && (
@@ -315,26 +319,21 @@ function ClothdetailPage() {
                     </EditButton>
                   </EditButtons>
                 )} */}
-                {isDeletePopupOpen && (
-                  <Modal
+              {isDeletePopupOpen && (
+                <DeleteModal
+                  isOpen={isDeletePopupOpen}
+                  onRequestClose={() => setisDeletePopupOpen(false)}
+                  style={{
+                    overlay: { backgroundColor: "rgba(81, 78, 78, 0.162)" },
+                  }}
+                >
+                  <DeletePopUp
                     isOpen={isDeletePopupOpen}
-                    onRequestClose={() => setisDeletePopupOpen(false)}
-                    style={{
-                      overlay: { backgroundColor: "rgba(81, 78, 78, 0.162)" },
-                      content: {
-                        border: "none",
-                        backgroundColor: "transparent",
-                        overflow: "hidden",
-                      },
-                    }}
-                  >
-                    <DeletePopUp
-                      isOpen={isDeletePopupOpen}
-                      onClose={() => setisDeletePopupOpen(false)}
-                    />
-                  </Modal>
-                )}
-              </ClothdebarContainer>
+                    onClose={() => setisDeletePopupOpen(false)}
+                  />
+                </DeleteModal>
+              )}
+              {/* </ClothdebarContainer> */}
             </ClothNameBox>
             <DetailWrap>
               <DetailItemWrap>

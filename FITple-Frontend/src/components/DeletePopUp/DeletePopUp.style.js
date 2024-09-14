@@ -1,15 +1,13 @@
 import styled from "styled-components";
 //삭제버튼 누를 씨 팝업
 export const DeletePopup = styled.div`
+  border: 2px solid red;
   display: flex;
   border: 1px solid #ffffff;
   width: 650px;
   height: 250px;
   border-radius: 20px;
   background-color: white;
-  position: absolute;
-  right: 420px;
-  bottom: 150px;
   flex-direction: column;
   justify-content: center;
   z-index: 1;
@@ -23,6 +21,7 @@ export const DeletePopupText = styled.div`
   margin-left: 230px;
 `;
 export const PopupButtonContainer = styled.div`
+  gap: 20px;
   display: flex;
   justify-content: center;
   align-items: center;

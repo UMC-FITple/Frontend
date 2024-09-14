@@ -1,3 +1,4 @@
+import ReactModal from "react-modal";
 import { styled, css } from "styled-components";
 
 export const Container = styled.div`
@@ -131,4 +132,10 @@ export const Wrap = styled.div`
 
 export const SizeWrap = styled.div`
   display: flex;
+`;
+export const DeleteModal = styled(ReactModal)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
 `;

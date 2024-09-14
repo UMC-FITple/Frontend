@@ -12,6 +12,7 @@ import {
   SubmitButton,
   OptionWrapper,
   OptionButton,
+  LogoWrap,
 } from "./LoginPage.style";
 
 function LoginPage() {
@@ -21,6 +22,7 @@ function LoginPage() {
   const navigate = useNavigate();
 
   const setToken = useAuthStore((state) => state.setToken); // Zustand 스토어에서 토큰 설정
+  const { setAuthenticate } = useAuthStore();
 
   useEffect(() => {
     setIsButtonActive(!!(loginId && loginPw));
@@ -36,6 +38,7 @@ function LoginPage() {
       if (response.ok) {
         setToken(data.result); // 로그인 성공 시 Zustand 스토어에 토큰을 저장
         Cookies.set("authToken", data.result, { expires: 7 }); // 쿠키에 토큰을 저장 (7일간 유지)
+        setAuthenticate(true);
         navigate("/clothes");
       } else {
         handleLoginError(response);
@@ -76,10 +79,16 @@ function LoginPage() {
     navigate("/findid");
   };
 
+  const goToHome = () => {
+    navigate("/");
+  };
+
   return (
     <LoginPageWrapper>
-      <img src={logo} width="50px" alt="FITple Logo" />
-      <MainText>FITple</MainText>
+      <LogoWrap onClick={goToHome}>
+        <img src={logo} width="50px" alt="FITple Logo" />
+        <MainText>FITple</MainText>
+      </LogoWrap>
       <FormWrapper>
         <InputBox
           type="text"

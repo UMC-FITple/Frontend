@@ -81,14 +81,7 @@ const SearchMainPage = () => {
   // 젤처음 데이터 불러오기
   useEffect(() => {
     getData();
-    console.log("category", category);
   }, [category]);
-
-  // useEffect(() => {
-  //   if (dataCount > 0) {
-  //     getData();
-  //   }
-  // }, [dataCount, ]);
 
   // keyword가 ""일때만 API불러오기
   useEffect(() => {
@@ -100,26 +93,6 @@ const SearchMainPage = () => {
       <Blur />
       {/* 위에 파란색 영역 */}
       <MainContainer>
-        {/* <SunIconImg src={SunIcon} />
-        <FireIconImg src={FireIcon} />
-        <SpringIconImg src={SpringIcon} />
-        <HeartIconImg src={HeartRedIcon} />
-        <ThumbIconImg src={ThumbIcon} />
-        <ThunderIconImg src={ThunderIcon} />
-        <StartRedIconImg src={StarRedIcon} /> */}
-        {/* <TitleBox>
-          <SubTitle>
-            옷장에 <ImpactText>많이 담긴</ImpactText> 아이템이에요.
-          </SubTitle>
-          <Title>
-            <Box>(</Box>
-            <TitleBackground>
-              1. <ImpactText>컨버스</ImpactText> 척테일러 올스타 클래식 하이
-            </TitleBackground>
-            <Box>)</Box>
-          </Title>
-        </TitleBox> */}
-
         <SearchContainer>
           <SearchText>내 아이템들을 검색해서 등록해보세요!</SearchText>
           <SearchBox

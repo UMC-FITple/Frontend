@@ -6,8 +6,10 @@ import {
   PopupButtonContainer,
 } from "./DeletePopUp.style";
 import { useState } from "react";
+import { DeleteClothes } from "../../../data/ClothApi";
 
-const DeletePopUp = ({ onClose }) => {
+const DeletePopUp = ({ onClose, clothId }) => {
+  console.log("ID확인", clothId);
   const handlePopupback = () => {
     onClose();
   };

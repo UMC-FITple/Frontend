@@ -1,3 +1,4 @@
+import ReactModal from "react-modal";
 import { Link } from "react-router-dom";
 import styled, { css } from "styled-components";
 
@@ -50,7 +51,7 @@ export const OptionBox = styled.div`
   box-shadow: 8px 8px 20px 0px #c9c7c730;
   background-color: #efefef;
   display: ${(props) => (props.$active ? "block" : "none")};
-  z-index: 100;
+  z-index: 1;
 `;
 
 export const OptionItem = styled.div`
@@ -154,6 +155,7 @@ export const ClothName = styled.div`
   margin-top: 1.25rem;
 `;
 export const ClothdebarContainer = styled.div`
+  border: 2px solid red;
   display: flex;
   position: relative;
   flex-direction: column;
@@ -379,3 +381,10 @@ export const OptionImg = styled.img`
 `;
 
 export const SizeWrap = styled.div``;
+export const DeleteModal = styled(ReactModal)`
+  border: 2px solid red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+`;
