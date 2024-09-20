@@ -15,6 +15,7 @@ export const ItemImg = styled.img`
   border-radius: 20px;
   margin-bottom: 8px;
   box-shadow: 8px 8px 20px 0px #c9c7c730;
+  object-fit: cover;
 `;
 
 export const HeartImg = styled.img`

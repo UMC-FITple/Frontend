@@ -237,6 +237,9 @@ export const UrlBox = styled.div`
   font-size: 20px;
   font-weight: 700;
   color: #000000;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 `;
 export const UrlLink = styled.a`
   color: black;
@@ -371,7 +374,7 @@ export const DetailTitle = styled.div`
   white-space: nowrap;
 `;
 export const DetailContext = styled.div`
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 700;
   white-space: nowrap;
 `;
