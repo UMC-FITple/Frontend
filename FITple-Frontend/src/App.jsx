@@ -1,6 +1,6 @@
 import "./App.css";
-import { Routes } from "react-router-dom";
-import { Route } from "react-router-dom";
+import React from "react";
+import { Routes, Route, useLocation, Outlet, Navigate } from "react-router-dom";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import SignupPage from "./pages/SignupPage/SignupPage";
 import ClothdetailPage from "./pages/ClothdetailPage/ClothdetailPage";
@@ -32,8 +32,32 @@ import LayoutMain from "./layout/LayoutMain";
 import ProfileEditPage from "./pages/ProfileEditPage/ProfileEditPage";
 import ChangepwdPage from "./pages/ChangepwdPage/ChangepwdPage";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
-import SearchTotalPage from "./pages/SearchTotalPage/SearchTotalPage";
+import { useEffect } from "react";
+import useAuthStore from "../data/store/userAuthStore";
+import { getInform } from "../data/ProfileApi";
 function App() {
+  const location = useLocation();
+  const { authenticate, setAuthenticate } = useAuthStore(); // 로그인 되었는지 안되어있는지 확인
+
+  // 로그인되어있는지 확인
+  const PrivateRoute = React.useCallback(() => {
+    return authenticate ? <Outlet /> : <Navigate to="/login" />;
+  }, [authenticate]);
+
+  // 유저정보불러오는 api를 이용해서 api정보를 잘 가지고오면 로그인되어있다고 판단, 아니면 안되어있다고 판단
+  useEffect(() => {
+    const getAuthenticate = async () => {
+      try {
+        await getInform();
+        setAuthenticate(true);
+      } catch (error) {
+        setAuthenticate(false);
+      }
+    };
+    getAuthenticate();
+    console.log("로그인 되어있는가?", authenticate);
+  }, [location.key]);
+
   return (
     <>
       <Routes>
@@ -54,30 +78,33 @@ function App() {
           <Route path="/findpw/showpw" element={<PwPage />} />
           <Route path="/repw" element={<RePwPage />} />
         </Route>
-        {/* Navbar 있는 layout */}
-        <Route element={<Layout />}>
-          <Route path="/clothes" element={<ClothmainPage />} />
-          <Route path="/clothes/:clothId" element={<ClothdetailPage />} />
-          <Route path="/clothes/register" element={<ClothregisterPage />} />
-          <Route path="/clothupdate/:clothId" element={<ClothupdatePage />} />
-          {/* 프로필페이지 */}
-          <Route path="/profile" element={<ProfilePage />} />
-          <Route path="/profile/edit" element={<ProfileEditPage />} />
-          <Route path="/profile/edit/repw" element={<ChangepwdPage />} />
-          <Route path="/recommend" element={<RecomMainPage />} />
-          <Route path="/recommendall" element={<RecomAllPage />} />
-          <Route path="/recommendFeed" element={<RecomUserFeedPage />} />
-          <Route path="/recommendclo" element={<RecomUserCloInfomPage />} />
-          <Route path="/brand/:id" element={<BrandPage />} />
-          <Route
-            path="/recommendUserSearch"
-            element={<RecomUserSearchPage />}
-          />
-          <Route path="/*" element={<NotFoundPage />} />
-        </Route>
-        {/* 파란색 Navbar 있는 layout */}
-        <Route element={<LayoutNavBlue />}>
-          <Route path="/search" element={<SearchMainPage />} />
+        {/* 로그인 확인하기 */}
+        <Route element={<PrivateRoute />}>
+          {/* Navbar 있는 layout */}
+          <Route element={<Layout />}>
+            <Route path="/clothes" element={<ClothmainPage />} />
+            <Route path="/clothes/:clothId" element={<ClothdetailPage />} />
+            <Route path="/clothes/register" element={<ClothregisterPage />} />
+            <Route path="/clothupdate/:clothId" element={<ClothupdatePage />} />
+            {/* 프로필페이지 */}
+            <Route path="/profile" element={<ProfilePage />} />
+            <Route path="/profile/edit" element={<ProfileEditPage />} />
+            <Route path="/profile/edit/repw" element={<ChangepwdPage />} />
+            <Route path="/recommend" element={<RecomMainPage />} />
+            <Route path="/recommendall" element={<RecomAllPage />} />
+            <Route path="/recommendFeed" element={<RecomUserFeedPage />} />
+            <Route path="/recommendclo" element={<RecomUserCloInfomPage />} />
+            <Route path="/brand/:id" element={<BrandPage />} />
+            <Route
+              path="/recommendUserSearch"
+              element={<RecomUserSearchPage />}
+            />
+            <Route path="/*" element={<NotFoundPage />} />
+          </Route>
+          {/* 파란색 Navbar 있는 layout */}
+          <Route element={<LayoutNavBlue />}>
+            <Route path="/search" element={<SearchMainPage />} />
+          </Route>
         </Route>
       </Routes>
     </>

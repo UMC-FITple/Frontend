@@ -106,6 +106,7 @@ export const PLUSbutton = styled.img`
   height: 97px;
   right: 100px;
   top: 500px;
+  z-index: 1;
   cursor: pointer;
   z-index: 1;
 `;

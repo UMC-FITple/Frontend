@@ -45,8 +45,7 @@ const ClothmainPage = () => {
 
   return (
     <Container>
-      {/* 등록 추가버튼 */}
-      <PLUSbutton src={PlusIcon} onClick={() => goToResister()} />
+      <PLUSbutton onClick={() => goToResister()} src={PlusIcon} />
       {/* 위에 컨테이너 */}
       <FirstContainer>
         <SearchContainer>

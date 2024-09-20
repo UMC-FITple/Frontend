@@ -5,6 +5,7 @@ import {
   Brand,
   BrandWrap,
   Container,
+  DeleteModal,
   HeartImg,
   ImgWrap,
   ItemImg,
@@ -21,6 +22,8 @@ import {
 } from "./UserItem.style";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import DeletePopUp from "../DeletePopUp/DeletePopUp";
+
 const UserItem = ({ ...props }) => {
   const navigate = useNavigate();
   const navgateToDetail = () => {
@@ -30,6 +33,7 @@ const UserItem = ({ ...props }) => {
     navigate(`/clothupdate/${item.cloth_id}`);
   };
   const [isOpen, setIsOpen] = useState(false);
+  const [isDeletePopupOpen, setisDeletePopupOpen] = useState(false);
   // 더미데이터
   const dummyItem = {
     nickname: "Anonymous",
@@ -44,7 +48,8 @@ const UserItem = ({ ...props }) => {
   };
 
   const item = props.item || dummyItem; // props.item이 없을 경우 dummyItem 사용
-  const showOptionBox = () => {
+  const handleDeleteCloth = () => {
+    setisDeletePopupOpen(!isDeletePopupOpen);
     setIsOpen(!isOpen);
   };
   return (
@@ -75,14 +80,16 @@ const UserItem = ({ ...props }) => {
           <ItemWrap>
             <BrandWrap>
               <Brand>{item.brand}</Brand>
-              <OptionBTN {...props} onClick={() => showOptionBox()}>
+              <OptionBTN {...props} onClick={() => setIsOpen(!isOpen)}>
                 <OptionImg src={OptionIcon} />
               </OptionBTN>
               <OptionBox $active={isOpen}>
                 <OptionItem $first onClick={navgateToEdit}>
                   옷 정보 수정하기
                 </OptionItem>
-                <OptionItem $last>옷 정보 삭제하기</OptionItem>
+                <OptionItem $last onClick={handleDeleteCloth}>
+                  옷 정보 삭제하기
+                </OptionItem>
               </OptionBox>
             </BrandWrap>
             <ItemName>{item.cloth_name}</ItemName>
@@ -94,6 +101,21 @@ const UserItem = ({ ...props }) => {
         </Container>
       ) : (
         <div>데이터가없습니다.</div>
+      )}
+      {isDeletePopupOpen && (
+        <DeleteModal
+          isOpen={isDeletePopupOpen}
+          onRequestClose={() => setisDeletePopupOpen(false)}
+          style={{
+            overlay: { backgroundColor: "rgba(81, 78, 78, 0.162)" },
+          }}
+        >
+          <DeletePopUp
+            clothId={item.cloth_id}
+            isOpen={isDeletePopupOpen}
+            onClose={() => setisDeletePopupOpen(false)}
+          />
+        </DeleteModal>
       )}
     </>
   );

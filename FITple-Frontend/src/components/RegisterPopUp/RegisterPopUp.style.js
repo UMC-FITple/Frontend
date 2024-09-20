@@ -2,20 +2,16 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   display: flex;
-  position: absolute;
   justify-content: center;
   flex-direction: column;
   width: 760px;
   height: 280px;
   background-color: white;
   border-radius: 20px;
-  top: 150px;
-  margin-left: 450px;
 `;
 export const Text1 = styled.div`
   display: flex;
   justify-content: center;
-  font-family: "SUIT Variable", sans-serif;
   color: #000000;
   font-size: 24px;
   font-weight: 600;
