@@ -385,7 +385,6 @@ export const OptionImg = styled.img`
 
 export const SizeWrap = styled.div``;
 export const DeleteModal = styled(ReactModal)`
-  border: 2px solid red;
   display: flex;
   justify-content: center;
   align-items: center;
