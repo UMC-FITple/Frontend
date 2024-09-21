@@ -16,13 +16,14 @@ const DeletePopUp = ({ onClose, clothId }) => {
   const handlePopupdelete = async () => {
     await DeleteClothes(clothId);
     onClose();
+    window.location.reload();
   };
   return (
     <DeletePopup>
       <DeletePopupText>정말 삭제하시겠습니까?</DeletePopupText>
       <PopupButtonContainer>
         <DeletePopupBack onClick={handlePopupback}>뒤로가기</DeletePopupBack>
-        <DeletePopupDelete onClick={handlePopupdelete}>
+        <DeletePopupDelete onClick={() => handlePopupdelete()}>
           삭제하기
         </DeletePopupDelete>
       </PopupButtonContainer>
