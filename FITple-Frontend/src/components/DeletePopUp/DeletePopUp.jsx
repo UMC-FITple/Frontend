@@ -5,17 +5,17 @@ import {
   DeletePopupText,
   PopupButtonContainer,
 } from "./DeletePopUp.style";
-import { useState } from "react";
 import { DeleteClothes } from "../../../data/ClothApi";
 
 const DeletePopUp = ({ onClose, clothId }) => {
-  console.log("ID확인", clothId);
+  // 뒤로가기 눌렀을 때
   const handlePopupback = () => {
     onClose();
   };
-  const [popupdelete, setPopupdelete] = useState(false);
-  const handlePopupdelete = () => {
-    setPopupdelete(!popupdelete);
+  // 삭제하기 눌렀을때
+  const handlePopupdelete = async () => {
+    await DeleteClothes(clothId);
+    onClose();
   };
   return (
     <DeletePopup>
