@@ -17,6 +17,8 @@ import { useNavigate } from "react-router-dom";
 import { getInform } from "../../../data/ProfileApi";
 import { logout } from "../../../data/LoginApi";
 import Cookies from "js-cookie";
+import userAuthStore from "../../../data/store/userAuthStore";
+
 const ProfilePage = () => {
   const navigate = useNavigate();
   const [selectItem, setSelectItem] = useState(0);
@@ -51,9 +53,11 @@ const ProfilePage = () => {
   // 로그아웃 함수
   const handleLogout = async () => {
     // 로그아웃을 통해 accessToken, refreshToken 제거
-    const response = await logout();
+    await logout();
     // authToken 쿠키 삭제
     Cookies.remove("authToken");
+    //zustand persist 로컬스토리지 제거
+    userAuthStore.persist.clearStorage();
     navigate("/");
   };
   useEffect(() => {

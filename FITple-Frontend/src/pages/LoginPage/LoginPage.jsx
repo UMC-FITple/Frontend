@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import Cookies from "js-cookie"; // 쿠키를 다루기 위한 라이브러리
 import logo from "../../../assets/Logo.svg";
 import { login } from "../../../data/LoginApi";
-import useAuthStore from "../../../data/store/userAuthStore";
+import userAuthStore from "../../../data/store/userAuthStore";
 import {
   LoginPageWrapper,
   MainText,
@@ -21,8 +20,7 @@ function LoginPage() {
   const [isButtonActive, setIsButtonActive] = useState(false);
   const navigate = useNavigate();
 
-  const setToken = useAuthStore((state) => state.setToken); // Zustand 스토어에서 토큰 설정
-  const { setAuthenticate } = useAuthStore();
+  const { setAuthenticate } = userAuthStore();
 
   useEffect(() => {
     setIsButtonActive(!!(loginId && loginPw));
@@ -36,8 +34,6 @@ function LoginPage() {
       const data = await response.json();
 
       if (response.ok) {
-        setToken(data.result); // 로그인 성공 시 Zustand 스토어에 토큰을 저장
-        Cookies.set("authToken", data.result, { expires: 7 }); // 쿠키에 토큰을 저장 (7일간 유지)
         setAuthenticate(true);
         navigate("/clothes");
       } else {

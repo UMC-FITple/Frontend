@@ -33,16 +33,16 @@ import ProfileEditPage from "./pages/ProfileEditPage/ProfileEditPage";
 import ChangepwdPage from "./pages/ChangepwdPage/ChangepwdPage";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 import { useEffect } from "react";
-import useAuthStore from "../data/store/userAuthStore";
+import userAuthStore from "../data/store/userAuthStore";
 import { getInform } from "../data/ProfileApi";
 function App() {
   const location = useLocation();
-  const { authenticate, setAuthenticate } = useAuthStore(); // 로그인 되었는지 안되어있는지 확인
+  const { authenticate, setAuthenticate } = userAuthStore(); // 로그인 되었는지 안되어있는지 확인
 
-  // 로그인되어있는지 확인
-  const PrivateRoute = React.useCallback(() => {
-    return authenticate ? <Outlet /> : <Navigate to="/login" />;
-  }, [authenticate]);
+  // authenticate가 변경될 때마다 로그 출력
+  useEffect(() => {
+    console.log("로그인 되어있는가?", authenticate);
+  }, [authenticate]); // authenticate가 변경될 때마다 실행
 
   // 유저정보불러오는 api를 이용해서 api정보를 잘 가지고오면 로그인되어있다고 판단, 아니면 안되어있다고 판단
   useEffect(() => {
@@ -55,8 +55,12 @@ function App() {
       }
     };
     getAuthenticate();
-    console.log("로그인 되어있는가?", authenticate);
-  }, [location.key]);
+  }, [location]);
+
+  // 로그인되어있는지 확인
+  const PrivateRoute = React.useCallback(() => {
+    return authenticate ? <Outlet /> : <Navigate to="/login" />;
+  }, [authenticate]);
 
   return (
     <>

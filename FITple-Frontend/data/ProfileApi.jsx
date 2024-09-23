@@ -3,7 +3,6 @@ const localhost = "http://localhost:3000";
 export const getInform = async () => {
   try {
     const url = new URL(`${localhost}/FITple/profile`);
-
     const response = await fetch(url, {
       method: "GET",
       credentials: "include",
@@ -14,6 +13,7 @@ export const getInform = async () => {
     }
     return await response.json();
   } catch (error) {
+    console.log(` ${response.status}`);
     // console.error("유저정보를 불러올수없습니다.", error);
     throw new Error("네트워크 오류가 발생했습니다. 잠시 후 다시 시도해주세요.");
   }
